@@ -1,5 +1,4 @@
 Dependencies = {
-  BabelPatch: require('babel-plugin-angular2-at-annotation'),
   Es6Shim: require('es6-shim'),
   ReflectMetadata: require('reflect-metadata'),
   ZoneJs: require('zone.js'),

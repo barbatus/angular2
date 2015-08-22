@@ -14,8 +14,6 @@ Package.registerBuildPlugin({
 });
 
 Npm.depends({
-  'babel-core': '5.8.22',
-  'babel-plugin-angular2-at-annotation': '0.1.0',
   'reflect-metadata': '0.1.0',
   'zone.js': '0.5.0',
   'es6-shim': '0.33.0',
