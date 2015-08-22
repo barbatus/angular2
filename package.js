@@ -1,10 +1,8 @@
 Package.describe({
   name: 'barbatus:angular2',
   version: '0.1.0',
-  // Brief, one-line summary of the package.
-  summary: '',
-  // URL to the Git repository containing the source code for this package.
-  git: '',
+  summary: 'Angula2 Npm package for Meteor',
+  git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
 });
 
