@@ -1,0 +1,50 @@
+'use strict';
+
+var Ng2ChangeDetection = Dependencies.Ng2ChangeDetection;
+var Ng2DefaultDiffers = Dependencies.Ng2DefaultDiffers;
+var Ng2Async = Dependencies.Ng2Async;
+
+export const ObservableWrapper = Ng2Async.ObservableWrapper;
+export const DefaultIterableDifferFactory = Ng2DefaultDiffers.DefaultIterableDifferFactory
+export const DefaultIterableDiffer = Ng2DefaultDiffers.DefaultIterableDiffer
+export const CollectionChangeRecord = Ng2DefaultDiffers.CollectionChangeRecord
+
+export const ASTWithSource = Ng2ChangeDetection.ASTWithSource
+export const AST = Ng2ChangeDetection.AST
+export const AstTransformer = Ng2ChangeDetection.AstTransformer
+export const PropertyRead = Ng2ChangeDetection.PropertyRead
+export const LiteralArray = Ng2ChangeDetection.LiteralArray
+export const ImplicitReceiver = Ng2ChangeDetection.ImplicitReceiver
+export const Lexer = Ng2ChangeDetection.Lexer
+export const Parser = Ng2ChangeDetection.Parser
+export const Locals = Ng2ChangeDetection.Locals
+export const DehydratedException = Ng2ChangeDetection.DehydratedException
+export const ExpressionChangedAfterItHasBeenCheckedException = Ng2ChangeDetection.ExpressionChangedAfterItHasBeenCheckedException
+export const ChangeDetectionError = Ng2ChangeDetection.ChangeDetectionError
+export const ChangeDetection = Ng2ChangeDetection.ChangeDetection
+export const ChangeDetectorDefinition = Ng2ChangeDetection.ChangeDetectorDefinition
+export const DebugContext = Ng2ChangeDetection.DebugContext
+export const CHECK_ONCE = Ng2ChangeDetection.CHECK_ONCE
+export const CHECK_ALWAYS = Ng2ChangeDetection.CHECK_ALWAYS
+export const DETACHED = Ng2ChangeDetection.DETACHED
+export const CHECKED = Ng2ChangeDetection.CHECKED
+export const ON_PUSH = Ng2ChangeDetection.ON_PUSH
+export const DEFAULT = Ng2ChangeDetection.DEFAULT
+export const DynamicProtoChangeDetector = Ng2ChangeDetection.DynamicProtoChangeDetector
+export const BindingRecord = Ng2ChangeDetection.BindingRecord
+export const DirectiveIndex = Ng2ChangeDetection.DirectiveIndex
+export const DirectiveRecord = Ng2ChangeDetection.DirectiveRecord
+export const DynamicChangeDetector = Ng2ChangeDetection.DynamicChangeDetector
+export const ChangeDetectorRef = Ng2ChangeDetection.ChangeDetectorRef
+export const IterableDiffers = Ng2ChangeDetection.IterableDiffers
+export const KeyValueDiffers = Ng2ChangeDetection.KeyValueDiffers
+export const WrappedValue = Ng2ChangeDetection.WrappedValue
+export const keyValDiff = Ng2ChangeDetection.keyValDiff
+export const iterableDiff = Ng2ChangeDetection.iterableDiff
+export const defaultIterableDiffers = Ng2ChangeDetection.defaultIterableDiffers
+export const defaultKeyValueDiffers = Ng2ChangeDetection.defaultKeyValueDiffers
+export const preGeneratedProtoDetectors = Ng2ChangeDetection.preGeneratedProtoDetectors
+export const PROTO_CHANGE_DETECTOR = Ng2ChangeDetection.PROTO_CHANGE_DETECTOR
+export const PreGeneratedChangeDetection = Ng2ChangeDetection.PreGeneratedChangeDetection
+export const DynamicChangeDetection = Ng2ChangeDetection.DynamicChangeDetection
+export const JitChangeDetection = Ng2ChangeDetection.JitChangeDetection
