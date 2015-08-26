@@ -1,7 +1,7 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.1.0',
-  summary: 'Angula2 Npm package for Meteor',
+  version: '0.2.0',
+  summary: 'Angular2 Npm package for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
 });
@@ -26,24 +26,22 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
 
   api.use([
-    'cosmos:browserify'
+    'cosmos:browserify@0.5.0'
   ], 'client');
 
   api.use([
-    'universe:modules@0.4.1',
+    'universe:modules@0.4.1'
+  ]);
+
+  api.imply([
+    'universe:modules@0.4.1'
   ]);
 
   api.addFiles([
     'client.browserify.js',
+    'main.import.js',
+    'angular2.js'
   ], 'client');
-
-  api.addFiles([
-    'main.import.jsx',
-    'angular2.import.jsx',
-    'router.import.jsx',
-    'change_detection.import.jsx',
-    'system-config.js'
-  ]);
 });
 
 Package.onTest(function(api) {
