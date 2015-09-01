@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "angular2": {
-      "version": "2.0.0-alpha.35",
+      "version": "2.0.0-alpha.36",
       "dependencies": {
         "traceur": {
           "version": "0.0.87",
@@ -50,7 +50,7 @@
               }
             },
             "rsvp": {
-              "version": "3.0.21"
+              "version": "3.1.0"
             },
             "semver": {
               "version": "2.3.2"
@@ -71,13 +71,13 @@
           }
         },
         "rtts_assert": {
-          "version": "2.0.0-alpha.35"
+          "version": "2.0.0-alpha.36"
         },
         "rx": {
           "version": "2.5.1"
         },
         "zone.js": {
-          "version": "0.5.2"
+          "version": "0.5.3"
         }
       }
     },

@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.3.0',
+  version: '0.3.1',
   summary: 'Angular2 Npm package for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: null
@@ -21,7 +21,7 @@ Npm.depends({
   'reflect-metadata': '0.1.0',
   'zone.js': '0.5.0',
   'es6-shim': '0.33.0',
-  'angular2': '2.0.0-alpha.35',
+  'angular2': '2.0.0-alpha.36',
   'exposify': '0.4.3',
   'externalify': '0.1.0'
 });
