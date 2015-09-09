@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.3.1',
+  version: '0.3.2',
   summary: 'Angular2 Npm package for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: null
@@ -31,7 +31,8 @@ Package.onUse(function(api) {
 
   api.use([
     'cosmos:browserify@0.5.0',
-    'systemjs:systemjs@0.18.4'
+    'systemjs:systemjs@0.18.4',
+    'underscore'
   ], 'client');
 
   api.imply('babel-runtime@0.1.3');

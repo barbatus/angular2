@@ -8,7 +8,9 @@ Angular2 = {
   core: require('angular2/bootstrap'),
   router: require('angular2/router'),
   change_detection: require('angular2/src/change_detection/change_detection'),
-  differs: require('angular2/src/change_detection/differs/default_iterable_differ'),
+  differs: [
+    require('angular2/src/change_detection/differs/default_iterable_differ'),
+    require('angular2/src/change_detection/differs/iterable_differs')],
   forms: require('angular2/forms'),
   di: require('angular2/di'),
   directives: require('angular2/directives'),

@@ -1,4 +1,5 @@
-function register(modules, exportFn) {
+function register(module, exportFn) {
+  var modules = _.isArray(module) ? module : [module]; 
   return {
     setters: [],
     execute: function() {
@@ -13,37 +14,37 @@ function register(modules, exportFn) {
 }
 
 System.register('angular2/angular2', [], function(exportFn) {
-  return register([Angular2.core], exportFn);
+  return register(Angular2.core, exportFn);
 });
 
 System.register('angular2/router', [], function(exportFn) {
-  return register([Angular2.router], exportFn);
+  return register(Angular2.router, exportFn);
 });
 
 System.register('angular2/change_detection', [], function(exportFn) {
-  return register([Angular2.change_detection, Angular2.differs], exportFn);
+  return register(_.flatten([Angular2.change_detection, Angular2.differs]), exportFn);
 });
 
 System.register('angular2/forms', [], function(exportFn) {
-  return register([Angular2.forms], exportFn);
+  return register(Angular2.forms, exportFn);
 });
 
 System.register('angular2/di', [], function(exportFn) {
-  return register([Angular2.di], exportFn);
+  return register(Angular2.di, exportFn);
 });
 
 System.register('angular2/directives', [], function(exportFn) {
-  return register([Angular2.directives], exportFn);
+  return register(Angular2.directives, exportFn);
 });
 
 System.register('angular2/pipes', [], function(exportFn) {
-  return register([Angular2.pipes], exportFn);
+  return register(Angular2.pipes, exportFn);
 });
 
 System.register('angular2/render', [], function(exportFn) {
-  return register([Angular2.render], exportFn);
+  return register(Angular2.render, exportFn);
 });
 
 System.register('angular2/facade', [], function(exportFn) {
-  return register([Angular2.facade], exportFn);
+  return register(Angular2.facade, exportFn);
 });
