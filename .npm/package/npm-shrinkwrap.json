@@ -125,13 +125,13 @@
                   "version": "1.0.0"
                 },
                 "escodegen": {
-                  "version": "1.6.1",
+                  "version": "1.7.0",
                   "dependencies": {
                     "estraverse": {
                       "version": "1.9.3"
                     },
                     "esutils": {
-                      "version": "1.1.6"
+                      "version": "2.0.2"
                     },
                     "esprima": {
                       "version": "1.2.5"
@@ -160,7 +160,7 @@
                       }
                     },
                     "source-map": {
-                      "version": "0.1.43",
+                      "version": "0.2.0",
                       "dependencies": {
                         "amdefine": {
                           "version": "1.0.0"
@@ -279,13 +279,13 @@
                   "version": "1.0.0"
                 },
                 "escodegen": {
-                  "version": "1.6.1",
+                  "version": "1.7.0",
                   "dependencies": {
                     "estraverse": {
                       "version": "1.9.3"
                     },
                     "esutils": {
-                      "version": "1.1.6"
+                      "version": "2.0.2"
                     },
                     "esprima": {
                       "version": "1.2.5"
@@ -314,7 +314,7 @@
                       }
                     },
                     "source-map": {
-                      "version": "0.1.43",
+                      "version": "0.2.0",
                       "dependencies": {
                         "amdefine": {
                           "version": "1.0.0"
