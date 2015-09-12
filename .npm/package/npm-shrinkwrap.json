@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "angular2": {
-      "version": "2.0.0-alpha.36",
+      "version": "2.0.0-alpha.37",
       "dependencies": {
         "traceur": {
           "version": "0.0.87",
@@ -71,13 +71,13 @@
           }
         },
         "rtts_assert": {
-          "version": "2.0.0-alpha.36"
+          "version": "2.0.0-alpha.37"
         },
         "rx": {
           "version": "2.5.1"
         },
         "zone.js": {
-          "version": "0.5.3"
+          "version": "0.5.4"
         }
       }
     },
