@@ -1,6 +1,6 @@
 var handler = function(compileStep) {
   var source = compileStep.read().toString('utf8');
-  var outputFile = compileStep.inputPath + '.js';
+  var outputFile = compileStep.inputPath;
 
   var path = compileStep.inputPath.split('.jsx');
   var moduleId = path[0];

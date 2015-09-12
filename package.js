@@ -33,26 +33,39 @@ Npm.depends({
   'es6-shim': '0.33.0',
   'angular2': '2.0.0-alpha.36',
   'exposify': '0.4.3',
-  'externalify': '0.1.0'
+  'externalify': '0.1.0',
+  'bluebird': '2.9.27'
 });
+
+var client = 'client';
+var server = 'server';
+var both = ['client', 'server'];
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.3');
 
   api.use([
     'cosmos:browserify@0.5.0',
-    'systemjs:systemjs@0.18.4',
     'underscore'
-  ], 'client');
+  ], client);
+
+  api.use([
+    'systemjs:systemjs@0.18.4'
+  ], both);
 
   api.imply('babel-runtime@0.1.3');
   api.imply('systemjs:systemjs@0.18.4');
 
   api.addFiles([
+    'sync_import.js',
+    'system_config.js'
+  ], server);
+
+  api.addFiles([
     'client.browserify.js',
     'main.jsx',
     'angular2.js'
-  ], 'client');
+  ], client);
 });
 
 Package.onTest(function(api) {
