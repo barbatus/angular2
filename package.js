@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.4.4',
+  version: '0.4.5',
   summary: 'Angular2 Npm package for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: null
@@ -23,7 +23,7 @@ Package.registerBuildPlugin({
     'plugin/ts_handler.js'
   ],
   npmDependencies: {
-    'typescript': '1.6.0-beta'
+    'typescript': '1.6.2'
   }
 });
 
