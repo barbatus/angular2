@@ -3,8 +3,9 @@ var ts = Npm.require('typescript');
 function logErrors(inputPath, compilerOptions) {
   var program = ts.createProgram([inputPath], compilerOptions);
 
-  var syntacticDiagnostics = program.getSyntacticDiagnostics(null);
-  var semanticDiagnostics = program.getSemanticDiagnostics(null);
+  var sourceFile = program.getSourceFile(inputPath);
+  var syntacticDiagnostics = program.getSyntacticDiagnostics(sourceFile, null);
+  var semanticDiagnostics = program.getSemanticDiagnostics(sourceFile, null);
   var diagnostics = syntacticDiagnostics.concat(semanticDiagnostics);
   for (var i = 0; i < diagnostics.length; i++) {
     var diagnostic = diagnostics[i];
@@ -25,6 +26,14 @@ Plugin.registerSourceHandler('ts', function(compileStep) {
   var outputFile = compileStep.inputPath;
   var inputFile = compileStep.inputPath;
 
+  if (inputFile.indexOf('.d.ts') != -1) {
+    compileStep.addAsset({
+      path: inputFile,
+      data: source
+    });
+    return;
+  };
+
   var path = inputFile.split('.ts');
   var moduleId = path[0];
 
@@ -34,8 +43,11 @@ Plugin.registerSourceHandler('ts', function(compileStep) {
     experimentalDecorators: true,
     diagnostics: true
   };
-  var result = ts.transpile(source, options, null, null, moduleId);
+  var diagnostics = [];
+  // This returns only Syntactic diagnostics which is usually empty.
+  var result = ts.transpile(source, options, inputFile, diagnostics, moduleId);
 
+  // Outputs extended diagnostics.
   logErrors(inputFile, options);
 
   compileStep.addJavaScript({

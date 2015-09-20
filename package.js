@@ -62,6 +62,16 @@ Package.onUse(function(api) {
   ], server);
 
   api.addFiles([
+    'typings/angular2/angular2.d.ts',
+    'typings/angular2/router.d.ts',
+    'typings/es6-promise/es6-promise.d.ts',
+    'typings/rx/rx-lite.d.ts',
+    'typings/rx/rx.d.ts',
+    'typings/meteor/meteor.d.ts',
+    'typings/all.d.ts'
+  ], server);
+
+  api.addFiles([
     'client.browserify.js',
     'main.jsx',
     'angular2.js'
