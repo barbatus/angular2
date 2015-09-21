@@ -1,6 +1,6 @@
 ## Angular2 package for Meteor
 
-Meteor package over [Angular2 NPM](https://www.npmjs.com/package/angular2) that exposes Angualr2 to the outside world as a System.js module.
+Meteor package over [Angular2 NPM](https://www.npmjs.com/package/angular2) that exposes Angular2 to the outside world as a System.js module.
 
 Current version of Angular2 - alpha-37.
 
