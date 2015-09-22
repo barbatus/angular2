@@ -42,12 +42,16 @@ var server = 'server';
 var both = ['client', 'server'];
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.1.0.3');
+  api.versionsFrom('1.2.0.1');
 
   api.use([
     'cosmos:browserify@0.5.0',
-    'underscore'
+    'underscore@1.0.4-rc.0'
   ], client);
+
+  api.use([
+    'isobuild:compiler-plugin@1.0.0'
+  ], server);
 
   api.use([
     'systemjs:systemjs@0.18.4'

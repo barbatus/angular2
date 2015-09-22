@@ -1,11 +1,19 @@
-Plugin.registerSourceHandler('ng.html', {
-  isTemplate: true,
-  archMatching: 'web'
-}, function(compileStep) {
-  var contents = compileStep.read().toString('utf8');
+var processFiles = function(files) {
+  files.forEach(processFile);
+};
 
-  compileStep.addAsset({
-    path: compileStep.inputPath,
-    data: contents
+var processFile = function(file) {
+  file.addHtml({
+    path: file.getPathInPackage(),
+    data: file.getContentsAsString(),
+    section: 'body'
   });
+};
+
+Plugin.registerCompiler({
+  extensions: ['ng.html'],
+  filenames: []
+
+}, function() {
+  return { processFilesForTarget: processFiles };
 });
