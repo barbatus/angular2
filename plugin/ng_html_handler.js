@@ -14,7 +14,7 @@ var processIndex = function(file) {
   var $contents = $(file.getContentsAsString());
   var $head = $contents.closest('head');
   var $body = $contents.closest('body');
-  var $script = $('<script>').text(scriptContent);
+  var $script = $('<script>').text(minifyJs(script));
   
   if (!$head.length)
     $head = $('<head>');
@@ -25,13 +25,13 @@ var processIndex = function(file) {
   $head.prepend($script);
 
   file.addHtml({
-    data: $head.html(),
+    data: minifyHtml($head.html()),
     path: file.getDirname() + '/head.html',
     section: 'head'
   });
 
   file.addHtml({
-    data: $body.html(),
+    data: minifyHtml($body.html()),
     path: file.getDirname() + '/body.html',
     section: 'body'
   });
@@ -40,17 +40,28 @@ var processIndex = function(file) {
 var processTemplate = function(file) {
   file.addAsset({
     path: file.getPathInPackage(),
-    data: file.getContentsAsString()
+    data: minifyHtml(file.getContentsAsString())
   });
 };
 
-var scriptContent = (function() {
-  var script = function() {
-    System.import('client/app');
-  };
+var script = function() {
+  System.import('client/app');
+};
 
-  return uglify.minify('(' + script.toString() + ')()', { fromString: true }).code;
-})();
+var minifyHtml = function(html) {
+  // Try parsing the html to make sure it is valid before minification
+  HTMLTools.parseFragment(html);
+  // TODO: For now there are no proper minifiers for angular2 templates,
+  // a parsing error will be thrown on a minification attemp since templates are illigal.
+  // Wait for a proper angular2 minifier.
+  return html;
+};
+
+var minifyJs = function(js) {
+  return uglify.minify('(' + js.toString() + ')()', {
+    fromString: true
+  }).code;
+};
 
 Plugin.registerCompiler({
   extensions: ['html'],
