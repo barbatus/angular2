@@ -8,7 +8,11 @@ Package.describe({
 
 Package.registerBuildPlugin({
   name: 'NgHtmlBuilder',
-  sources: ['plugin/ng_html_handler.js']
+  sources: ['plugin/ng_html_handler.js'],
+  npmDependencies : {
+    'cheerio': '0.19.0',
+    'uglify-js': '2.4.24',
+  }
 });
 
 Package.registerBuildPlugin({
