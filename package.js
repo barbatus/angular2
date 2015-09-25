@@ -8,7 +8,12 @@ Package.describe({
 
 Package.registerBuildPlugin({
   name: 'NgHtmlBuilder',
-  sources: ['plugin/ng_html_handler.js']
+  sources: ['plugin/ng_html_handler.js'],
+  use: ['html-tools@1.0.4'],
+  npmDependencies : {
+    'cheerio': '0.19.0',
+    'uglify-js': '2.4.24'
+  }
 });
 
 Package.registerBuildPlugin({
@@ -42,12 +47,16 @@ var server = 'server';
 var both = ['client', 'server'];
 
 Package.onUse(function(api) {
-  api.versionsFrom('1.1.0.3');
+  api.versionsFrom('1.2.0.1');
 
   api.use([
     'cosmos:browserify@0.5.0',
-    'underscore'
+    'underscore@1.0.4-rc.0'
   ], client);
+
+  api.use([
+    'isobuild:compiler-plugin@1.0.0'
+  ], server);
 
   api.use([
     'systemjs:systemjs@0.18.4'

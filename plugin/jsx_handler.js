@@ -1,24 +1,29 @@
-var handler = function(compileStep) {
-  var source = compileStep.read().toString('utf8');
-  var outputFile = compileStep.inputPath;
+var processFiles = function(files) {
+  files.forEach(processFile);
+};
 
-  var path = compileStep.inputPath.split('.jsx');
-  var moduleId = path[0];
+var processFile = function(file) {
+  var source = file.getContentsAsString();
+  var packageName = file.getPackageName();
+  var inputFile = file.getPathInPackage();
+  var moduleId = inputFile.split('.jsx')[0];
+  var outputFile = moduleId + '.js';
 
-  if (compileStep.packageName) {
-    moduleId = '{' + compileStep.packageName + '}/' + moduleId;
+  if (packageName) {
+    moduleId = '{' + packageName + '}/' + moduleId;
   }
 
+  var result;
   var extraWhitelist = [
     'es6.modules',
     'es7.decorators'
   ];
 
   try {
-    var result = Babel.transformMeteor(source, {
+    result = Babel.transformMeteor(source, {
       sourceMap: true,
-      filename: compileStep.pathForSourceMap,
-      sourceMapName: compileStep.pathForSourceMap,
+      filename: file.getDisplayPath(),
+      sourceMapName: file.getDisplayPath(),
       extraWhitelist: extraWhitelist,
       modules: 'system',
       moduleIds: true,
@@ -26,9 +31,9 @@ var handler = function(compileStep) {
     });
   } catch (e) {
     if (e.loc) {
-      compileStep.error({
+      file.error({
         message: e.message,
-        sourcePath: compileStep.inputPath,
+        sourcePath: inputFile,
         line: e.loc.line,
         column: e.loc.column
       });
@@ -37,12 +42,16 @@ var handler = function(compileStep) {
     throw e;
   }
 
-  compileStep.addJavaScript({
+  file.addJavaScript({
     path: outputFile,
-    sourcePath: compileStep.inputPath,
-    data: result.code,
-    sourceMap: JSON.stringify(result.map)
+    data: result.code
   });
 };
 
-Plugin.registerSourceHandler('jsx', handler);
+Plugin.registerCompiler({
+  extensions: ['jsx'],
+  filenames: []
+
+}, function() {
+  return { processFilesForTarget: processFiles };
+});
