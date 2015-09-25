@@ -16,11 +16,13 @@ var processIndex = function(file) {
   var $body = $contents.closest('body');
   var $script = $('<script>').text(minifyJs(script));
   
-  if (!$head.length)
+  if (!$head.length) {
     $head = $('<head>');
+  }
 
-  if (!$body.length)
+  if (!$body.length) {
     $body = $('<body>').append($contents.filter(':not(head)'));
+  }
 
   $head.prepend($script);
 

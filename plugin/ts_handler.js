@@ -4,13 +4,18 @@ var processFiles = function(files) {
   files.forEach(processFile);
 };
 
+// TS declaration file regex.
+var dFileRegex = /^.*\.d\.ts$/;
+
 var processFile = function(file) {
   var source = file.getContentsAsString();
   var inputFile = file.getPathInPackage();
   var moduleId = inputFile.split('.ts')[0];
   var outputFile = moduleId + '.js';
 
-  if (inputFile.indexOf('.d.ts') != -1) {
+  // If it's a declaration file then
+  // skip compilation and add an asset.
+  if (dFileRegex.test(inputFile)) {
     file.addAsset({
       path: inputFile,
       data: source

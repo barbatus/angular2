@@ -3,6 +3,9 @@
 var bluebird = Npm.require('bluebird');
 var Promise = bluebird.Promise;
 
+// Sync import for System.js to be
+// used on the server side to run modules
+// in the Meteor environments. 
 function syncImport(name) {
   var scheduledFuncs = [];
   var origScheduler = Promise.setScheduler(function(fn) {
