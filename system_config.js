@@ -14,7 +14,7 @@ System.register = function(name, deps, declare) {
 
     mainImported = true;
     Meteor.startup(function() {
-      System.importSync(name);
+      System.import(name);
     });
   }
 };
