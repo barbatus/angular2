@@ -7,25 +7,49 @@ Package.describe({
 });
 
 Package.registerBuildPlugin({
-  name: 'NgHtmlBuilder',
-  sources: ['plugin/ng_html_handler.js'],
-  use: ['html-tools@1.0.4'],
+  name: 'HTMLBuilder',
+  sources: [
+    'plugin/utils.js',
+    'plugin/mixins/file_mixin.js',
+    'plugin/compilers/ng_compiler.js',
+    'plugin/compilers/ng_caching_compiler.js',
+    'plugin/handlers/html_handler.js'
+  ],
+  use: [
+    'caching-compiler@1.0.0',
+    'ecmascript@0.1.4'
+  ],
   npmDependencies : {
-    'cheerio': '0.19.0',
-    'uglify-js': '2.4.24'
+    'cheerio': '0.19.0'
   }
 });
 
 Package.registerBuildPlugin({
-  name: 'ES6Builder',
-  use: ['babel-compiler@5.8.3_1'],
-  sources: ['plugin/jsx_handler.js']
+  name: 'JSXBuilder',
+  sources: [
+    'plugin/utils.js',
+    'plugin/mixins/file_mixin.js',
+    'plugin/compilers/ng_caching_compiler.js',
+    'plugin/handlers/jsx_handler.js'
+  ],
+  use: [
+    'babel-compiler@5.8.3_1',
+    'caching-compiler@1.0.0',
+    'ecmascript@0.1.4'
+  ]
 });
 
 Package.registerBuildPlugin({
   name: 'TSBuilder',
   sources: [
-    'plugin/ts_handler.js'
+    'plugin/utils.js',
+    'plugin/mixins/file_mixin.js',
+    'plugin/compilers/ng_compiler.js',
+    'plugin/handlers/ts_handler.js'
+  ],
+  use: [
+    'caching-compiler@1.0.0',
+    'ecmascript@0.1.4'
   ],
   npmDependencies: {
     'typescript': '1.6.2'
@@ -82,6 +106,7 @@ Package.onUse(function(api) {
   ], server);
 
   api.addFiles([
+    'defaultLayout.html',
     'client.browserify.js',
     'main.jsx',
     'angular2.js'
