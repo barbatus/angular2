@@ -12,21 +12,24 @@ class HtmlCompiler extends NgCompiler {
       var isExtension = $contents.closest('head,body').length;
       var isTemplate = $contents.closest(':not(head,body)').length;
 
-      if (isExtension && isTemplate)
+      if (isExtension && isTemplate) {
         throw Error(file.getPackagePrefixedPath('log') +
           ' can\'t contain <head> or <body> tags with other tags in top level of template');
+      }
 
-      if (isExtension)
+      if (isExtension) {
         extensionFiles.push(file);
-      else
+      } else {
         templateFiles.push(file);
+      }
     });
 
     // Pops the default layout file if a costume layout was found
-    if (extensionFiles.length > 1)
-      extensionFiles.some((file, i) =>
-        file.getPackageName() == 'barbatus:angular2' && extensionFiles.splice(i, 1)
+    if (extensionFiles.length > 1) {
+      extensionFiles = extensionFiles.filter((file, i) =>
+        file.getPackageName() != 'barbatus:angular2'
       );
+    }
 
     new HtmlExtensionCompiler().processFilesForTarget(extensionFiles);
     new NgTemplateCompiler().processFilesForTarget(templateFiles);

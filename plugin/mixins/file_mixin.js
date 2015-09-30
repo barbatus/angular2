@@ -1,10 +1,10 @@
 FileMixin = {
   getPackagePrefixedPath(extension) {
-    return this.getPackagePrefix(extension) + this.getPathInPackage();
+    return this.getPackagePrefix(extension) + '/' + this.getPathInPackage();
   },
 
   getPackagePrefixedModule(extension) {
-    return this.getPackagePrefix(extension) + this.getModuleName();
+    return this.getPackagePrefix(extension) + '/' + this.getModuleName();
   },
 
   getPackagePrefix(extension) {
@@ -12,9 +12,9 @@ FileMixin = {
     if (!packageName) return '';
 
     switch (extension || this.getExtension()) {
-      case 'html': return packageName.replace(':', '-') + '/';
-      case 'jsx': return '{' + packageName + '}/';
-      case 'log': return '{' + packageName + '} ';
+      case 'html': return packageName.replace(':', '-');
+      case 'jsx': return '{' + packageName + '}';
+      case 'log': return '{' + packageName + '}';
       default: return '';
     }
   },

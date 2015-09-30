@@ -1,18 +1,21 @@
 'user strict';
 
 var oldRegister = System.register;
-var mainImported = false;
-var mainRegex = /^.*\/main$/;
+var mainRegex = /^server\/main$/;
+var appRegex = /^client\/app$/;
 System.register = function(name, deps, declare) {
   oldRegister.call(this, name, deps, declare);
 
-  if (mainRegex.test(name)) {
-    if (mainImported) {
-      console.error('[Angular2]: Server part should contain exactly one "main" file');
-      return;
-    }
+  // Imports server main module (server/main.ts).
+  if (Meteor.isServer && mainRegex.test(name)) {
+    Meteor.startup(function() {
+      // Does import synchronously in the main app fiber.
+      System.import(name).await();
+    });
+  }
 
-    mainImported = true;
+  // Imports client main module (client/app.ts).
+  if (Meteor.isClient && appRegex.test(name)) {
     Meteor.startup(function() {
       System.import(name);
     });

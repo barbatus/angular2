@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.5.3_6',
+  version: '0.5.4',
   summary: 'Angular2 Npm package for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: null
@@ -92,7 +92,7 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'system_config.js'
-  ], server);
+  ], both);
 
   // Adds Angular2 and Meteor declaration files.
   api.addFiles([
@@ -106,7 +106,7 @@ Package.onUse(function(api) {
   ], server);
 
   api.addFiles([
-    'defaultLayout.html',
+    'default_layout.html',
     'client.browserify.js',
     'main.jsx',
     'angular2.js'
