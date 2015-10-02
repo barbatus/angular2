@@ -78,14 +78,14 @@ Package.onUse(function(api) {
   ], server);
 
   api.use([
-    'cosmos:browserify@0.5.0',
+    'cosmos:browserify@0.8.0',
     'underscore@1.0.4',   
     'systemjs:systemjs@0.18.4'
   ], both);
 
   api.imply([
     'babel-runtime@0.1.3',
-    'cosmos:browserify@0.5.0',
+    'cosmos:browserify@0.8.0',
     'systemjs:systemjs@0.18.4'
   ]);
   api.imply('promise@0.4.8', server);
