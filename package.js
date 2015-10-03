@@ -42,18 +42,12 @@ Package.registerBuildPlugin({
 Package.registerBuildPlugin({
   name: 'TSBuilder',
   sources: [
-    'plugin/utils.js',
-    'plugin/mixins/file_mixin.js',
-    'plugin/compilers/ng_compiler.js',
     'plugin/handlers/ts_handler.js'
   ],
   use: [
-    'caching-compiler@1.0.0',
+    'barbatus:ts-compilers@0.1.0',
     'ecmascript@0.1.4'
-  ],
-  npmDependencies: {
-    'typescript': '1.6.2'
-  }
+  ]
 });
 
 Npm.depends({
