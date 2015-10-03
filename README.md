@@ -6,8 +6,6 @@ Current version of Angular2 - alpha-37.
 
 Package has also built-in Babel and TypeScript languages support.
 
-> Note: current version is still experimental; stable version is expected in Meteor 1.2 only.
-
 ### Start importing Angular2 modules
 After package installation, you can start importing Angular2 core's components into your Meteor app the same way as you would do it in any other TypeScript or Babel app:
 
