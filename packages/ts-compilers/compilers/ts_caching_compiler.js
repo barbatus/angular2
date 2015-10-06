@@ -49,7 +49,7 @@ class TsCachingCompiler extends MultiFileCachingCompiler {
 
     return {
       compileResult: compileResult,
-      referencedImportPaths: []
+      referencedImportPaths: result.referencedPaths
     }
   }
 

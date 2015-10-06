@@ -17,8 +17,8 @@ class DiagnosticMessage {
 
 class CompilerDiagnostics {
   constructor(
-      syntactic: Array<DiagnosticMessage>,
-      semantic: Array<DiagnosticMessage>
+      syntactic: DiagnosticMessage[],
+      semantic: DiagnosticMessage[]
     ) {
     this.syntactic = syntactic;
     this.semantic = semantic;
@@ -37,14 +37,57 @@ class CompilerDiagnostics {
   }
 }
 
+function assert(expression: Boolean, message?: String) {
+  if (!expression) {
+    message = message || '[TypeScript]: assert failure';
+    throw new Error(message);
+  }
+}
+
+// Normalizes file reference path to be relative to the root app path:
+// 1) resolve every ../ in the front of the path
+// 2) resolve other ../
+function normalizeRef(refPath, filePath) {
+  let refDir = ts.getDirectoryPath(ts.normalizeSlashes(refPath));
+  let fileDir = ts.getDirectoryPath(ts.normalizeSlashes(filePath));
+
+  let refParts = refDir.split('/');
+  let fileParts = fileDir.split('/').reverse();
+
+  let count = 0;
+  // Resolve every front ../
+  for (let part of refParts) {
+    if (part !== '..' && part !== '.') {
+      break;
+    }
+    if (part === '..') {
+      fileParts.pop();
+    }
+    count++;
+  }
+
+  let resultPath = fileParts.reverse().concat(refParts.slice(count));
+  resultPath.push(ts.getBaseFileName(refPath));
+
+  // Resolve every other ../
+  return ts.normalizePath(resultPath.join('/'));
+}
+
 TypeScript = class TypeScript {
 
-  static transpileFiles(files, options, onFileReadyCallback) {
+  // Transpiles Meteor plugin's file objects.
+  // To avoid holding compilation results in the memory,
+  // it executes a callback with the results on each file is compiled.
+  //
+  // TODO: add exact type for the onFileReadyCallback.
+  // @param {Function} onFileReadyCallback
+  //    Callback to be called with the result of file compilation.
+  static transpileFiles(files, options, onFileReadyCallback: Function) {
 
-    ts.Debug.assert(Match.test(options.filePath, Function),
+    assert(Match.test(options.filePath, Function),
       '[TypeScript.transpileFiles]: options.filePath should be a function');
 
-    ts.Debug.assert(Match.test(options.moduleName, Match.Optional(Function)),
+    assert(Match.test(options.moduleName, Match.Optional(Function)),
       '[TypeScript.transpileFiles]: options.moduleName should be a function');
 
     TypeScript._transpileFiles(files, options, onFileReadyCallback);
@@ -52,7 +95,7 @@ TypeScript = class TypeScript {
 
   static transpile(fileContent, options) {
 
-    ts.Debug.assert(Match.test(options.filePath, String),
+    assert(Match.test(options.filePath, String),
       '[TypeScript.transpile]: options.filePath should be a string');
 
     return TypeScript._transpile(fileContent, options);
@@ -70,9 +113,11 @@ TypeScript = class TypeScript {
 
     return compilerOptions;
   }
-
-  static normalizeName(fileName) {
-    var resultName = fileName;
+  
+  // 1) Normalizes slashes in the file path
+  // 2) Removes file extension
+  static normalizePath(filePath) {
+    var resultName = filePath;
     if (ts.fileExtensionIs(resultName, '.map')) {
       resultName = resultName.replace('.map', '');
     }
@@ -80,8 +125,8 @@ TypeScript = class TypeScript {
       ts.normalizeSlashes(resultName));
   }
 
-  static isDeclarationFile(fileName) {
-    return fileName.match(/^.*\.d\.ts$/);
+  static isDeclarationFile(filePath) {
+    return filePath.match(/^.*\.d\.ts$/);
   }
 
   static _transpileFiles(files, options, onFileReadyCallback) {
@@ -89,11 +134,11 @@ TypeScript = class TypeScript {
 
     let defaultHost = ts.createCompilerHost(compilerOptions);
 
-    let fileMap = ts.createFileMap(TypeScript.normalizeName);
+    let fileMap = ts.createFileMap(TypeScript.normalizePath);
     files.forEach(file => 
       fileMap.set(options.filePath(file), file));
 
-    let fileResultMap = ts.createFileMap(TypeScript.normalizeName);
+    let fileResultMap = ts.createFileMap(TypeScript.normalizePath);
 
     let customHost = {
       getSourceFile: (fileName, target) => {
@@ -133,7 +178,17 @@ TypeScript = class TypeScript {
         fileResultMap.remove(fileName);
         let diagnostics = TypeScript._readDiagnostics(program,
           options.filePath(file));
-        onFileReadyCallback(file, diagnostics, fileResult);
+
+        let referencedPaths = [];
+        if (!compilerOptions.noResolve) {
+          // Source file already processed, it is retreived from
+          // the internal map here.
+          let sourceFile = customHost.getSourceFile(fileName);
+          let referencedPaths = !compilerOptions.noResolve ?
+            TypeScript._getReferencedPaths(sourceFile): [];
+        }
+
+        onFileReadyCallback(file, referencedPaths, diagnostics, fileResult);
         return;
       }
 
@@ -169,8 +224,8 @@ TypeScript = class TypeScript {
 
     let data, sourceMap;
     program.emit(sourceFile, (fileName, outputText, writeByteOrderMark) => {
-      if (TypeScript.normalizeName(fileName) !==
-          TypeScript.normalizeName(options.filePath)) return;
+      if (TypeScript.normalizePath(fileName) !==
+          TypeScript.normalizePath(options.filePath)) return;
 
       if (ts.fileExtensionIs(fileName, '.map')) {
         sourceMap = outputText;
@@ -179,9 +234,37 @@ TypeScript = class TypeScript {
       }
     });
 
+    let referencedPaths = !compilerOptions.noResolve ?
+      TypeScript._getReferencedPaths(sourceFile): [];
+
     let diagnostics = this._readDiagnostics(program, options.filePath);
 
-    return { data, sourceMap, diagnostics };
+    return { data, sourceMap, referencedPaths, diagnostics };
+  }
+
+  static _getReferencedPaths(sourceFile) {
+    let referencedPaths = [];
+
+    // Get resolved module.
+    if (sourceFile.resolvedModules) {
+      for (let moduleName in sourceFile.resolvedModules) {
+        let module = sourceFile.resolvedModules[moduleName];
+        if (module && module.resolvedFileName) {
+          referencedPaths.push(module.resolvedFileName);
+        }
+      }
+    }
+
+    // Get declaration files references.
+    if (sourceFile.referencedFiles) {
+      let refFiles = sourceFile.referencedFiles.map((ref) => {
+        return ref.fileName;
+      });
+      for (let path of refFiles) {
+        referencedPaths.push(normalizeRef(path, sourceFile.fileName));
+      }
+    }
+    return referencedPaths;
   }
 
   static _readDiagnostics(program, filePath: String): CompilerDiagnostics {
@@ -200,7 +283,7 @@ TypeScript = class TypeScript {
   }
 
   static _flattenDiagnostics(tsDiagnostics: Array<ts.Diagnostic>) {
-    let diagnostics: FlattenDiagnostic[] = [];
+    let diagnostics: DiagnosticMessage[] = [];
 
     tsDiagnostics.forEach((diagnostic) => {
       if (!diagnostic.file) return;

@@ -1,7 +1,7 @@
 
-TsCompiler = class TsCompiler  {
+TsCompiler = class TsCompiler extends TsBasicCompiler  {
   constructor() {
-    this.init();
+    super();
   }
 
   processFilesForTarget(files) {
@@ -16,7 +16,7 @@ TsCompiler = class TsCompiler  {
       ...this.tsconfig,
       filePath: file => file.getPathInPackage(),
       moduleName: file => this.getAbsoluteImportPath(file, true)
-    }, (file, diagnostics, result) => {
+    }, (file, referencedPaths, diagnostics, result) => {
 
       this.processDiagnostics(file, diagnostics);
 
@@ -24,5 +24,3 @@ TsCompiler = class TsCompiler  {
     });
   }
 }
-
-utils.classMixin(TsCompiler, TsBasicCompiler);

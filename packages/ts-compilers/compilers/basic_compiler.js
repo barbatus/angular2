@@ -4,6 +4,10 @@ var fs = Plugin.fs;
 var ts = Npm.require('typescript');
 
 TsBasicCompiler = class TsBasicCompiler {
+  constructor() {
+    this.init();
+  }
+
   init() {
     this._customConfig = this._readConfig();
 
@@ -11,7 +15,7 @@ TsBasicCompiler = class TsBasicCompiler {
       module : ts.ModuleKind.System,
       target: ts.ScriptTarget.ES5,
       sourceMap: true,
-      noResolve: false,
+      noResolve: false, // By default TS will resolve all modules.
       diagnostics: true
     };
   }
@@ -41,7 +45,7 @@ TsBasicCompiler = class TsBasicCompiler {
         message: diagnostic.message,
         // Path with package name prefix to 
         // show package where this error happened.
-        sourcePath: this.getPackagePrefixedPath(file),
+        sourcePath: this.getAbsoluteImportPath(file),
         line: diagnostic.line,
         column: ediagnostic.column
       });
@@ -51,7 +55,7 @@ TsBasicCompiler = class TsBasicCompiler {
       diagnostics.semantic.forEach(diagnostic => {
         file.error({
           message: diagnostic.message,
-          sourcePath: this.getPackagePrefixedPath(file),
+          sourcePath: this.getAbsoluteImportPath(file),
           line: diagnostic.line,
           column: diagnostic.column
         });
