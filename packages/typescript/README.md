@@ -5,12 +5,12 @@ TypeScript API that is adapted to be used in Meteor packages.
 Install package `meteor add barbatus:typescript` and start using TypeScript right away, e.g.:
 ````js
     let result = TypeScript.transpile(fileContent, {
-        ...compilerOptions
+        ...compilerOptions,
         filePath: some_path // file path relative to the app root.
         moduleName: some_module, // set module name if you want to use ES6 modules.
     })
 ````
-Package's API strives to be similar to the Babel package's one.
+Package's API strives to be close to the Babel package's [one](https://atmospherejs.com/meteor/babel-compiler).
 
 ### API
 #### TypeScript.transpileFiles(files, options, fileReadyCallback)
@@ -22,12 +22,12 @@ access to other file characteristics can be defined in the **`options`**.
 ````js
 {
     ...compilerOptions,
-    filePath: (file) => file.getPathInPackage()
-    moduleName: (file) => getModuleName(file)
+    filePath: file => file.getPathInPackage()
+    moduleName: file => getModuleName(file)
 }
 ````
 `filePath` field is expected to be a function that gets in a file object and return its file path.
-Field is *required*.
+Field is **required**.
 
 `moduleName` field. If you want to use modules, you set the `module` field of the `compilerOptions` (e.g., `compilerOptions.module = ts.ModuleKind.System`) and define a `moduleName` function that gets in a file and retuns some module name.
 
@@ -36,14 +36,14 @@ Field is *required*.
 Callback's params are defined as follows:
 ````js
     TypeScript.transpileFiles(files, options,
-        (file, referencedFiles, diagnostics, resultData) => {
+        (file, referencedPaths, diagnostics, resultData) => {
 
         })
 ````
 
 `file` — file that has been compiled.
 
-`referencedFiles` — paths of the TypeScript modules and declaration files that current file uses.
+`referencedPaths` — paths of the TypeScript modules and declaration files that current file uses.
 Param is useful for Meteor compilers because allows to watch for changes in the file's dependencies and re-compile file when used API has been potentially changed.
 
 `diagnostics` — an diagnostics object that provides diagnostics of the file transpilation.
@@ -52,8 +52,8 @@ Structure of this object is described below.
 `resultData` — result of the transpilation:
 ````js
     {
-        path: filePath // path of the transpiled file
-        data: content // transpiled content
+        path: filePath, // normalized relative path of the transpiled file (no ./, ../ and \ inside)
+        data: content, // transpiled content
         sourceMap: sourceMapContent // source map content
     }
 ```
@@ -63,6 +63,16 @@ Structure of this object is described below.
 Same as `transpileFiles` but only for one file's string content. String content can be taken by file API's method
 `file.getContentsAsString()`.
 
+Method returns a result object of the following structure:
+````js
+    {
+        data: content,
+        sourceMap: sourceMapContent,
+        referencedPaths: filePaths, // file paths of other modules and declaration files
+        diagnostics: diagnosticsObject
+    }
+````
+
 ### Compiler Options
 Compiler options are pretty much the same as described [here](https://github.com/Microsoft/TypeScript/wiki/Compiler-Options) with few exceptions.
 
@@ -70,7 +80,7 @@ Package restricts usage of options that potentially conflics or not supported by
 
 Namely options that are set to false for time being are `declaration`, `project`, `watch` (file changes watch is expected to done via Meteor plugins), `inlineSourceMap`, `inlineSources`, `outDir`, `outFile`, `rootDir`, `sourceRoot`.
 
-Package also extends usage of some of the options for the API. For example, if you set ``noResolve`` to true _referencedFiles_ array will be always empty.
+Package also extends usage of some of the options for the API. For example, if you set ``noResolve`` to true `referencedFiles` array will be always empty.
 
 ### Diagnostics
 As now diagnostics object consists of two properties: syntactic and semantic.
@@ -83,9 +93,10 @@ Diagnostics object has two convenient methods for logging out error details to t
  diagnostics.logSyntactic(); // prints all syntactic errors
  diagnostics.logSemantic(); //  prints all semantics errors
  // Or you can
- diagnostics.semantic.forEach(message => ...);   // iterate semanctic messages
+ diagnostics.semantic.forEach(message => ...);   // iterate semantic messages
  diagnostics.syntactic.forEach(message => ...);   // iterate syntactic messages
 ````
 
-
+### Example of Usage
+You can check out TS caching [compiler](https://github.com/barbatus/angular2/blob/master/packages/ts-compilers/compilers/ts_caching_compiler.js) where this package is used.
 
