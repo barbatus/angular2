@@ -45,8 +45,8 @@ function assert(expression: Boolean, message?: String) {
 }
 
 // Normalizes file reference path to be relative to the root app path:
-// 1) resolve every ../ in the front of the path
-// 2) resolve other ../
+// 1) resolves every ../ in the front of the path
+// 2) resolves every other ../
 function normalizeRef(refPath, filePath) {
   let refDir = ts.getDirectoryPath(ts.normalizeSlashes(refPath));
   let fileDir = ts.getDirectoryPath(ts.normalizeSlashes(filePath));
@@ -77,7 +77,7 @@ TypeScript = class TypeScript {
 
   // Transpiles Meteor plugin's file objects.
   // To avoid holding compilation results in the memory,
-  // it executes a callback with the results on each file is compiled.
+  // it executes a callback with the results on each file compiled.
   //
   // TODO: add exact type for the onFileReadyCallback.
   // @param {Function} onFileReadyCallback
@@ -109,7 +109,37 @@ TypeScript = class TypeScript {
     // Support decorators by default.
     compilerOptions.experimentalDecorators = true;
 
+    // Always emit imports for unresolved files.
     compilerOptions.isolatedModules = true;
+
+    // Declaration files are expected to
+    // be generated separately.
+    compilerOptions.declaration = false;
+
+    // Overrides watching,
+    // it is handled by Meteor itself.
+    compilerOptions.watch = false;
+
+    // We use source maps via Meteor file API,
+    // This class's API provides source maps
+    // separately but alongside compilation results.
+    // Hence, skip generating inline source maps.
+    compilerOptions.inlineSourceMap = false;
+    compilerOptions.inlineSources = false;
+
+    // Always emit.
+    compilerOptions.noEmit = false;
+    compilerOptions.noEmitOnError = false;
+
+    // Don't generate any files, hence,
+    // skip setting outDir and outFile.
+    compilerOptions.outDir = null;
+    compilerOptions.outFile = null;
+
+    // This is not need as well.
+    // API doesn't have paramless methods.
+    compilerOptions.rootDir = null;
+    compilerOptions.sourceRoot = null;
 
     return compilerOptions;
   }
@@ -181,8 +211,8 @@ TypeScript = class TypeScript {
 
         let referencedPaths = [];
         if (!compilerOptions.noResolve) {
-          // Source file already processed, it is retreived from
-          // the internal map here.
+          // Source files are already processed,
+          // each one is retreived from the internal map here.
           let sourceFile = customHost.getSourceFile(fileName);
           let referencedPaths = !compilerOptions.noResolve ?
             TypeScript._getReferencedPaths(sourceFile): [];
@@ -210,7 +240,7 @@ TypeScript = class TypeScript {
     let customHost = {
       getSourceFile: (fileName, target) => {
         // We already have content of the target file,
-        // skip reading it one more time.
+        // skip reading it again.
         if (fileName === ts.normalizeSlashes(options.filePath)) {
           return sourceFile;
         }
@@ -245,7 +275,7 @@ TypeScript = class TypeScript {
   static _getReferencedPaths(sourceFile) {
     let referencedPaths = [];
 
-    // Get resolved module.
+    // Get resolved modules.
     if (sourceFile.resolvedModules) {
       for (let moduleName in sourceFile.resolvedModules) {
         let module = sourceFile.resolvedModules[moduleName];
@@ -255,7 +285,7 @@ TypeScript = class TypeScript {
       }
     }
 
-    // Get declaration files references.
+    // Get declaration file references.
     if (sourceFile.referencedFiles) {
       let refFiles = sourceFile.referencedFiles.map((ref) => {
         return ref.fileName;
@@ -267,6 +297,8 @@ TypeScript = class TypeScript {
     return referencedPaths;
   }
 
+  // TODO: try slitting semantic diagnostics into realted to unresolved modules
+  // and all other remaining.
   static _readDiagnostics(program, filePath: String): CompilerDiagnostics {
     let sourceFile;
     if (filePath) {
