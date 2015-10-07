@@ -6,8 +6,8 @@ Install package `meteor add barbatus:typescript` and start using TypeScript righ
 ````js
     let result = TypeScript.transpile(fileContent, {
         ...compilerOptions,
-        filePath: some_path // file path relative to the app root.
-        moduleName: some_module, // set module name if you want to use ES6 modules.
+        filePath: some_path, // file path relative to the app root.
+        moduleName: some_module // set module name if you want to use ES6 modules.
     })
 ````
 Package's API strives to be close to the Babel package's [one](https://atmospherejs.com/meteor/babel-compiler).
@@ -15,8 +15,8 @@ Package's API strives to be close to the Babel package's [one](https://atmospher
 ### API
 #### TypeScript.transpileFiles(files, options, fileReadyCallback)
 **`files`** param is expected to be Meteor's file objects in a compiler plugin.
-Method eventually uses only `getContentsAsString` inside,
-access to other file characteristics can be defined in the **`options`**.
+Method eventually uses only `getContentsAsString()` inside,
+access to other file properties can be defined in the **`options`**.
 
 **`options`** should have the following structure:
 ````js
@@ -44,7 +44,7 @@ Callback's params are defined as follows:
 `file` — file that has been compiled.
 
 `referencedPaths` — paths of the TypeScript modules and declaration files that current file uses.
-Param is useful for Meteor compilers because allows to watch for changes in the file's dependencies and re-compile file when used API has been potentially changed.
+Param is useful for Meteor compilers since allows to watch for changes in the file's dependencies and re-compile file when used methods or classes have been changed.
 
 `diagnostics` — an diagnostics object that provides diagnostics of the file transpilation.
 Structure of this object is described below.
