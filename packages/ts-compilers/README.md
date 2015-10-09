@@ -23,10 +23,8 @@ at least on the initial Meteor run. Since all files are provided in a batch,
 TypeScript compiles them more effiently using internal cache.
 
 #### TsCachingCompiler
-Extends `MultiFileCachingCompiler`. Compiles files one by one using
-internal cache to skip pristine files thereby differing to `TsCompiler`.
-
-Internally it uses `TypeScript.transpile` method.
+Extends Meteor's `MultiFileCachingCompiler`. `TsCachingCompiler` compiles files one by one using
+file hashes to avoid tranforming pristine files. `TypeScript.transpile` is used internally to transpile file contents.
 
 #### .tsconfig
 Compilers can be configured via `.tsconfig` in the app root folder.
@@ -47,4 +45,4 @@ Though, module resolution can greately slow down the compilation speed. Taking t
 switching in on, i.e. `noResolve: true`, during intensive period of app development having Meteor running at the same time.
 TypeScript will skip resolving each module while continue cursing on syntactic errors. This can greately increase speed of the Meteor re-start on each file change.
 
-At the end of the day, you can switch `noResolve` back to false, thus, checking all possible mistakes you could have made including missing modules errors or incorrect API usage etc.
+At the end of the day, you can switch `noResolve` back to false, thus, checking all possible mistakes you could have made including missing modules errors or incorrect API usage etc. You can treat it partly as the schema one expects to use with non-script languages like Java etc. First, you make changes, only then compile to check if there is any mistakes.
