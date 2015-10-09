@@ -26,7 +26,7 @@ TypeScript compiles them more effiently using internal cache.
 Extends Meteor's [`MultiFileCachingCompiler`](https://atmospherejs.com/meteor/caching-compiler). `TsCachingCompiler` compiles files one by one using
 file hashes to avoid tranforming pristine files. `TypeScript.transpile` is used internally to transpile file contents.
 
-#### .tsconfig
+#### Ts Config
 Compilers can be configured via `.tsconfig` in the app root folder.
 Format of the `.tsconfig` is pretty much the same as [here](https://github.com/Microsoft/TypeScript/wiki/tsconfig.json),
 except whole config structure is treated as `compilerOptions` part;
@@ -40,9 +40,9 @@ When set, the compiler will always throw exceptions whenever syntactic or symant
 occurs. Otherwise, it throws by default only on syntactic errors,
 semantic ones (like module resolution errors, unknown variable is used etc) are printed to the terminal.
 
-`noResolve` option is responsible for module resolution process same as the original one is used to.
-Though, module resolution can greately slow down the compilation speed. Having taken this into account, one can consider
-switching it on, i.e. `noResolve: true`, during intensive period of app development having Meteor running at the same time.
+#### Compilation Speed-up
+`noResolve` configuration option is responsible for module resolution process same as the original one.
+One of the point to have is that module resolution can greately slow down the compilation speed. Taking this into account, one can consider switching it on, i.e. `noResolve: true`, during intensive period of app development and having Meteor running at the same time.
 TypeScript will skip resolving each module while continue cursing on syntactic errors. This can greately increase speed of the Meteor re-start on each file change.
 
-At the end of the day, you can switch `noResolve` back to false, thus, checking all possible mistakes you could have made including missing modules errors or incorrect API usage etc. You can treat it partly as the schema one expects to use with non-script languages like Java etc. Usually you make changes first, only then compile to check if there is any mistakes.
+At the end of the day, you can switch `noResolve` back to false, thus, checking all possible mistakes you could have made including missing modules errors or incorrect API usage etc. You can treat it partly as the schema one expects to use with non-script languages like Java etc. Usually there you make changes first, only then compile to check if there is any mistakes.
