@@ -15,11 +15,9 @@ And you are ready to go.
 
 ### Compilers
 #### TsCompiler
-To be used for compilation of all provided `.ts`-files at once using
-`TypeScript.transpileFiles` method internally.
+To be used for compilation of all provided `.ts`-files at once using `TypeScript.transpileFiles` method internally.
 
-One of the its benefits can be improved speed
-at least on the initial Meteor run. Since all files are provided in a batch,
+One of the its benefits can be improved speed at least on the initial Meteor run. Since all files are provided in a batch,
 TypeScript compiles them more effiently using internal cache.
 
 #### TsCachingCompiler
