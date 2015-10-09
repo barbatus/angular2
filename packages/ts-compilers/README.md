@@ -38,11 +38,14 @@ Most compiler options stay intact except few cases. You can read about them
 One additional options that has been added — `alwaysThrow`.
 When set, the compiler will always throw exceptions whenever syntactic or symantic error
 occurs. Otherwise, it throws by default only on syntactic errors,
-semantic ones (like module resolution errors, unknown variable is used etc) are printed to the terminal.
+semantic ones (like module resolution errors, unknown variable is used etc) are just printed to the terminal.
 
 #### Compilation Speed-up
-`noResolve` configuration option is responsible for module resolution process same as the original one.
+`noResolve` configuration option is responsible for module resolution process same as the original one is supposed to be.
 One of the point to have is that module resolution can greately slow down the compilation speed. Taking this into account, one can consider switching it on, i.e. `noResolve: true`, during intensive period of app development and having Meteor running at the same time.
 TypeScript will skip resolving each module while continue cursing on syntactic errors. This can greately increase speed of the Meteor re-start on each file change.
 
-At the end of the day, you can switch `noResolve` back to false, thus, checking all possible mistakes you could have made including missing modules errors or incorrect API usage etc. You can treat it partly as the schema one expects to use with non-script languages like Java etc. Usually there you make changes first, only then compile to check if there is any mistakes.
+At the end of the day, you can switch `noResolve` back to false and re-start Meteor. Thus, you'll check all possible mistakes you could have made including missing modules errors or incorrect API usage etc. You can treat it partly as the schema one expects to use with non-script languages like Java etc. Usually there you make changes first, only then compile to check if there is any mistakes.
+
+#### Example of usage
+Please, check Angular2's demo called Parties [here](https://github.com/Urigo/Meteor-Angular2/tree/master/examples/parties). It's built fully in TypeScript and uses `.tsconfig` as well.
