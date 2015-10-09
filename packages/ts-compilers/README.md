@@ -26,7 +26,7 @@ TypeScript compiles them more effiently using internal cache.
 Extends Meteor's [`MultiFileCachingCompiler`](https://atmospherejs.com/meteor/caching-compiler). `TsCachingCompiler` compiles files one by one using
 file hashes to avoid tranforming pristine files. `TypeScript.transpile` is used internally to transpile file contents.
 
-#### Ts Config
+#### TypeScript Config
 Compilers can be configured via `.tsconfig` in the app root folder.
 Format of the `.tsconfig` is pretty much the same as [here](https://github.com/Microsoft/TypeScript/wiki/tsconfig.json),
 except whole config structure is treated as `compilerOptions` part;
