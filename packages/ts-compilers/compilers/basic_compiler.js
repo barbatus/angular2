@@ -47,7 +47,7 @@ TsBasicCompiler = class TsBasicCompiler {
         // show package where this error happened.
         sourcePath: this.getAbsoluteImportPath(file),
         line: diagnostic.line,
-        column: ediagnostic.column
+        column: diagnostic.column
       });
     });
 
