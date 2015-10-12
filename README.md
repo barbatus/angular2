@@ -2,7 +2,7 @@
 
 Meteor package that wraps [Angular2 NPM](https://www.npmjs.com/package/angular2) and exposes Angular2 to the outside world as a System.js module.
 
-Current version of Angular2 - alpha-37.
+Current version of Angular2 - alpha-40.
 
 Package has also built-in Babel and TypeScript languages support.
 
@@ -22,8 +22,7 @@ class Demo {
 bootstrap(Demo);
 ````
 
-Besides core components, other well-known Angular2 modules such as `angular2/forms`, `angular2/di` etc including `angular2/router` are also
-available for importing.
+Besides core components, `angular2/router` is also available for importing.
 
 
 ### TypeScript
