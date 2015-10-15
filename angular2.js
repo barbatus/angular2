@@ -5,6 +5,7 @@ require('zone.js');
 var Angular2 = {
   core: require('angular2/core'),
   router: require('angular2/router'),
+  // Requires below are for the dev purposes mostly.
   change_detection: require('angular2/src/core/change_detection/change_detection'),
   differs: [
     require('angular2/src/core/change_detection/differs/default_iterable_differ'),
@@ -12,6 +13,7 @@ var Angular2 = {
   facade: require('angular2/src/core/facade/async')
 };
 
+// Registers System.js module.
 function register(module, exportFn) {
   var modules = _.isArray(module) ? module : [module]; 
   return {

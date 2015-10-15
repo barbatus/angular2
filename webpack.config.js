@@ -3,6 +3,6 @@ module.exports = {
   entry: "./angular2.js",
   output: {
     path: __dirname,
-    filename: "out/angular2.js"
+    filename: "dist/angular2.js"
   }
 };
