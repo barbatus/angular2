@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.6.3',
+  version: '0.6.3_3',
   summary: 'Angular2 Npm package for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
@@ -45,7 +45,7 @@ Package.registerBuildPlugin({
     'plugin/handlers/ts_handler.js'
   ],
   use: [
-    'barbatus:ts-compilers@0.1.5',
+    'barbatus:ts-compilers@0.1.5_2',
     'ecmascript@0.1.4'
   ]
 });
@@ -78,7 +78,7 @@ Package.onUse(function(api) {
     'system_config.js'
   ], both);
 
-  api.addFiles([
+  api.addAssets([
     'typings/angular2/angular2.d.ts',
     'typings/angular2/router.d.ts',
     'typings/es6-shim/es6-shim.d.ts',
