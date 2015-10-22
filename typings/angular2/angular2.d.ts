@@ -11,7 +11,7 @@
 
 
 
-///<reference path="../es6-shim/es6-shim.d.ts"/>
+
 
 
 interface Map<K,V> {}

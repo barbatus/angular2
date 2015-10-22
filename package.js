@@ -78,10 +78,9 @@ Package.onUse(function(api) {
     'system_config.js'
   ], both);
 
-  api.addAssets([
+  api.addFiles([
     'typings/angular2/angular2.d.ts',
     'typings/angular2/router.d.ts',
-    'typings/es6-shim/es6-shim.d.ts',
     'typings/meteor/meteor.d.ts',
     'typings/angular2.d.ts'
   ], server);

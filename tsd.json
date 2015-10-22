@@ -1,0 +1,12 @@
+{
+  "version": "v1",
+  "ref": "master",
+  "path": "typings",
+  "repo": "borisyankov/DefinitelyTyped",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "meteor/meteor.d.ts": {
+      "commit": "22d5a3bccc039004944982be9967f52a12d9d8c7"
+    }
+  }
+}

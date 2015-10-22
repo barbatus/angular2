@@ -7,6 +7,13 @@
     "angular2": "2.0.0-alpha.42"
   },
   "devDependencies": {
-    "webpack": "~1.11.0"
+    "grunt": "^0.4.5",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-npm-install": "^0.2.0",
+    "grunt-shell": "^1.1.2",
+    "grunt-tsd": "^0.2.0-beta.1",
+    "grunt-webpack": "^1.0.11",
+    "webpack": "~1.11.0",
+    "webpack-dev-server": "^1.12.1"
   }
 }
