@@ -1,6 +1,6 @@
 ## Angular2 package for Meteor
 
-Angular2 packaged for Meteor as a System.js module.
+**Angular2 packaged for Meteor as a System.js module.**
 
 Source code is taken from the official [Angular2 NPM](https://www.npmjs.com/package/angular2).
 
