@@ -26,11 +26,10 @@ Besides core components, `angular2/router` is also available for importing.
 
 
 ### TypeScript
-Package's TypeScript plugin asserts TypeScript diagnostics information (e.g. syntactic errors) to the console by default.
-To get rid of them will need to reference Angular2 and Meteor declaration files in your `.ts` files.
+The packages uses this TypeScript [compiler](https://github.com/barbatus/ts-compilers) package which can assert TypeScript diagnostics information (e.g. syntactic errors) to the console. At first, you will likely see in the console that names like "Meteor" or "Mongo" are underfined. To get rid of that issue, you will need to make use of Angular2 and Meteor declaration files in your `.ts` files.
 
 Luckily, this package installs all required (Angular2 and Meteor) declaration files into the "typings" folder.
-All you need to do is to add the following lines at the top of each `.ts` file that uses Angular2 or Meteor:
+You will need only to add the following lines at the top of each `.ts` file that uses Angular2 or Meteor:
 ````ts
   /// <reference path="typings/angular2.d.ts" />
   /// <reference path="typings/meteor/meteor.d.ts" />'
