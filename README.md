@@ -2,7 +2,7 @@
 
 Meteor package that wraps [Angular2 NPM](https://www.npmjs.com/package/angular2) and exposes Angular2 to the outside world as a System.js module.
 
-Current version of Angular2 - **alpha-42**.
+Current version of Angular2 - **alpha-44**.
 
 Package has also built-in Babel and TypeScript languages support.
 
@@ -29,9 +29,11 @@ Besides core components, `angular2/router` is also available for importing.
 Package's TypeScript plugin asserts TypeScript diagnostics information (e.g. syntactic errors) to the console by default.
 To get rid of them will need to reference Angular2 and Meteor declaration files in your `.ts` files.
 
-Luckily, package comes with these declation files included.
-All you need to do is to add the next line at the top of each `.ts` file:
+Luckily, this package installs all required (Angular2 and Meteor) declaration files into the "typings" folder.
+All you need to do is to add the following lines at the top of each `.ts` file that uses Angular2 or Meteor:
 ````ts
-  /// <reference path="../.meteor/local/build/programs/server/assets/packages/barbatus_angular2/typings/all.d.ts" />'
+  /// <reference path="typings/angular2.d.ts" />
+  /// <reference path="typings/meteor/meteor.d.ts" />'
 ````
+
 This should fix compilation issues.
