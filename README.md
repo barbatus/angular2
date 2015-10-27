@@ -1,11 +1,12 @@
 ## Angular2 package for Meteor
 
 Angular2 packaged for Meteor as a System.js module.
+
 Source code is taken from the official [Angular2 NPM](https://www.npmjs.com/package/angular2).
 
 Current version of Angular2 in the package - **alpha-44**.
 
-Package provides Babel and TypeScript languages support for development with Angular2.
+Also, this package provides Babel and TypeScript languages support for development with Angular2.
 
 ### Start importing Angular2 modules
 After package installation, you can start importing Angular2 core's components into your Meteor app the same way as you would do it in any other TypeScript or Babel app:
