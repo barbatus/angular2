@@ -41,7 +41,8 @@ class JsxCompiler extends NgCachingCompiler {
   addCompileResult(file, result) {
     file.addJavaScript({
       data: result.code,
-      path: file.getPackagePrefixedModule() + '.js'
+      path: file.getPackagePrefixedModule() + '.js',
+      sourceMap: result.map
     });
   }
 }
