@@ -45,8 +45,7 @@ Package.registerBuildPlugin({
     'plugin/handlers/ts_handler.js'
   ],
   use: [
-    'barbatus:ts-compilers@0.1.7',
-    'ecmascript@0.1.4'
+    'barbatus:ts-compilers@0.1.7'
   ]
 });
 
