@@ -56,7 +56,9 @@
 	  differs: [
 	    __webpack_require__(63),
 	    __webpack_require__(62)],
-	  facade: __webpack_require__(96)
+	  facade: __webpack_require__(96),
+	  decorators: __webpack_require__(45),
+	  router_dev: __webpack_require__(247)
 	};
 
 	// Registers System.js module.
@@ -81,6 +83,14 @@
 
 	System.register('angular2/router', [], function(exportFn) {
 	  return register(Angular2.router, exportFn);
+	});
+
+	System.register('angular2/router_dev', [], function(exportFn) {
+	  return register(Angular2.router_dev, exportFn);
+	});
+
+	System.register('angular2/decorators', [], function(exportFn) {
+	  return register([Angular2.decorators], exportFn);
 	});
 
 	System.register('angular2/change_detection', [], function(exportFn) {

@@ -10,7 +10,9 @@ var Angular2 = {
   differs: [
     require('angular2/src/core/change_detection/differs/default_iterable_differ'),
     require('angular2/src/core/change_detection/differs/iterable_differs')],
-  facade: require('angular2/src/core/facade/async')
+  facade: require('angular2/src/core/facade/async'),
+  decorators: require('angular2/src/core/util/decorators'),
+  router_dev: require('angular2/src/router/lifecycle_annotations_impl')
 };
 
 // Registers System.js module.
@@ -35,6 +37,14 @@ System.register('angular2/angular2', [], function(exportFn) {
 
 System.register('angular2/router', [], function(exportFn) {
   return register(Angular2.router, exportFn);
+});
+
+System.register('angular2/router_dev', [], function(exportFn) {
+  return register(Angular2.router_dev, exportFn);
+});
+
+System.register('angular2/decorators', [], function(exportFn) {
+  return register([Angular2.decorators], exportFn);
 });
 
 System.register('angular2/change_detection', [], function(exportFn) {

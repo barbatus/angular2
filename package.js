@@ -7,46 +7,14 @@ Package.describe({
 });
 
 Package.registerBuildPlugin({
-  name: 'HTMLBuilder',
+  name: 'Compilers',
   sources: [
-    'plugin/utils.js',
-    'plugin/mixins/file_mixin.js',
-    'plugin/compilers/ng_compiler.js',
-    'plugin/compilers/ng_caching_compiler.js',
-    'plugin/handlers/html_handler.js'
+    'plugin/registrator.js'
   ],
   use: [
-    'caching-compiler@1.0.0',
-    'ecmascript@0.1.4'
-  ],
-  npmDependencies : {
-    'cheerio': '0.19.0'
-  }
-});
-
-Package.registerBuildPlugin({
-  name: 'JSXBuilder',
-  sources: [
-    'plugin/utils.js',
-    'plugin/mixins/file_mixin.js',
-    'plugin/compilers/ng_caching_compiler.js',
-    'plugin/handlers/jsx_handler.js'
-  ],
-  use: [
-    'babel-compiler@5.8.3_1',
-    'caching-compiler@1.0.0',
-    'ecmascript@0.1.4'
-  ]
-});
-
-Package.registerBuildPlugin({
-  name: 'TSBuilder',
-  sources: [
-    'plugin/handlers/ts_handler.js'
-  ],
-  use: [
-    'barbatus:ts-compilers@0.1.7',
-    'ecmascript@0.1.4'
+    'ecmascript@0.1.4',
+    'barbatus:ng2-compilers@0.1.0',
+    'barbatus:ts-compilers@0.1.8'
   ]
 });
 
@@ -58,25 +26,24 @@ Package.onUse(function(api) {
   api.versionsFrom('1.2.0.1');
 
   api.use([
-    'isobuild:linter-plugin@1.0.0',
-    'isobuild:compiler-plugin@1.0.0',
-    'promise@0.4.8'
+    'isobuild:compiler-plugin@1.0.0'
   ], server);
 
   api.use([
-    'underscore@1.0.4',   
-    'systemjs:systemjs@0.18.4'
-  ], both);
+    'underscore@1.0.4',
+    'systemjs:systemjs@0.18.4',
+    'promise@0.4.8'
+  ]);
 
   api.imply([
-    'babel-runtime@0.1.3',
-    'systemjs:systemjs@0.18.4'
+    'babel-runtime',
+    'systemjs:systemjs',
+    'promise'
   ]);
-  api.imply('promise@0.4.8', server);
 
   api.addFiles([
     'system_config.js'
-  ], both);
+  ]);
 
   api.addFiles([
     'typings/angular2/angular2.d.ts',
@@ -86,7 +53,6 @@ Package.onUse(function(api) {
   ], server);
 
   api.addFiles([
-    'default_layout.html',
     'dist/angular2.js'
   ], client);
 });
