@@ -4,7 +4,7 @@
     "reflect-metadata": "0.1.0",
     "zone.js": "0.5.0",
     "es6-shim": "0.33.0",
-    "angular2": "2.0.0-alpha.44"
+    "angular2": "2.0.0-alpha.45"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
