@@ -1,10 +1,10 @@
 {
   "license": "MIT",
   "dependencies": {
-    "reflect-metadata": "0.1.0",
-    "zone.js": "0.5.0",
-    "es6-shim": "0.33.0",
-    "angular2": "2.0.0-alpha.45"
+    "reflect-metadata": "0.1.2",
+    "zone.js": "0.5.8",
+    "es6-shim": "0.33.13",
+    "angular2": "2.0.0-alpha.46"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

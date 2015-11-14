@@ -10,11 +10,6 @@ module.exports = function(grunt) {
         }
       }
     },
-    shell: {
-      angular2_typings: {
-        command: 'tsd link'
-      }
-    },
     tsd: {
       refresh: {
         options: {
@@ -36,11 +31,9 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-npm-install');
   grunt.loadNpmTasks('grunt-webpack');
-  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-tsd');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('default', ['npm-install:angular2',
-    'webpack:angular2_bundle', 'shell:angular2_typings',
-    'tsd:refresh', 'copy:angular2_typings']);
+    'webpack:angular2_bundle', 'tsd:refresh', 'copy:angular2_typings']);
 };

@@ -6,11 +6,11 @@ var Angular2 = {
   core: require('angular2/core'),
   router: require('angular2/router'),
   // Requires below are for the dev purposes mostly.
-  change_detection: require('angular2/src/core/change_detection/change_detection'),
-  differs: [
+  change_detection: [
+    require('angular2/src/core/change_detection/change_detection'),
     require('angular2/src/core/change_detection/differs/default_iterable_differ'),
     require('angular2/src/core/change_detection/differs/iterable_differs')],
-  facade: require('angular2/src/core/facade/async'),
+  facade: require('angular2/src/facade/async'),
   decorators: require('angular2/src/core/util/decorators'),
   router_dev: require('angular2/src/router/lifecycle_annotations_impl')
 };
@@ -48,7 +48,7 @@ System.register('angular2/decorators', [], function(exportFn) {
 });
 
 System.register('angular2/change_detection', [], function(exportFn) {
-  return register(_.flatten([Angular2.change_detection, Angular2.differs]), exportFn);
+  return register(_.flatten(Angular2.change_detection), exportFn);
 });
 
 System.register('angular2/facade', [], function(exportFn) {
