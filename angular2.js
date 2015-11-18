@@ -10,7 +10,10 @@ var Angular2 = {
     require('angular2/src/core/change_detection/change_detection'),
     require('angular2/src/core/change_detection/differs/default_iterable_differ'),
     require('angular2/src/core/change_detection/differs/iterable_differs')],
-  facade: require('angular2/src/facade/async'),
+  facade: [
+    require('angular2/src/facade/async'),
+    require('angular2/src/facade/lang')
+  ],
   decorators: require('angular2/src/core/util/decorators'),
   router_dev: require('angular2/src/router/lifecycle_annotations_impl')
 };
