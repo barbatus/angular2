@@ -2,7 +2,7 @@
 
 Plugin.registerCompiler({
   extensions: ['ts'],
-}, () => new TsCachingCompiler());
+}, () => new TsCompiler());
 
 Plugin.registerCompiler({
   extensions: ['jsx'],

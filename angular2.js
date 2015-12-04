@@ -12,7 +12,9 @@ var Angular2 = {
     require('angular2/src/core/change_detection/differs/iterable_differs')],
   facade: [
     require('angular2/src/facade/async'),
-    require('angular2/src/facade/lang')
+    require('angular2/src/facade/lang'),
+    require('angular2/src/facade/browser'),
+    require('angular2/src/facade/math')
   ],
   decorators: require('angular2/src/core/util/decorators'),
   router_dev: require('angular2/src/router/lifecycle_annotations_impl')
