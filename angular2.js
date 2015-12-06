@@ -14,7 +14,12 @@ var Angular2 = {
     require('angular2/src/facade/async'),
     require('angular2/src/facade/lang'),
     require('angular2/src/facade/browser'),
-    require('angular2/src/facade/math')
+    require('angular2/src/facade/math'),
+    require('angular2/src/facade/collection')
+  ],
+  dom: [
+    require('angular2/src/core/dom/dom_adapter'),
+    require('angular2/src/core/dom/browser_adapter')
   ],
   decorators: require('angular2/src/core/util/decorators'),
   router_dev: require('angular2/src/router/lifecycle_annotations_impl')
@@ -58,4 +63,8 @@ System.register('angular2/change_detection', [], function(exportFn) {
 
 System.register('angular2/facade', [], function(exportFn) {
   return register(Angular2.facade, exportFn);
+});
+
+System.register('angular2/dom', [], function(exportFn) {
+  return register(Angular2.dom, exportFn);
 });

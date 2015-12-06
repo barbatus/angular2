@@ -52,13 +52,20 @@
 	  core: __webpack_require__(38),
 	  router: __webpack_require__(377),
 	  // Requires below are for the dev purposes mostly.
-	  change_detection: __webpack_require__(61),
-	  differs: [
+	  change_detection: [
+	    __webpack_require__(61),
 	    __webpack_require__(63),
 	    __webpack_require__(62)],
 	  facade: [
 	    __webpack_require__(96),
-	    __webpack_require__(41)
+	    __webpack_require__(41),
+	    __webpack_require__(411),
+	    __webpack_require__(288),
+	    __webpack_require__(48)
+	  ],
+	  dom: [
+	    __webpack_require__(281),
+	    __webpack_require__(348)
 	  ],
 	  decorators: __webpack_require__(45),
 	  router_dev: __webpack_require__(381)
@@ -97,11 +104,15 @@
 	});
 
 	System.register('angular2/change_detection', [], function(exportFn) {
-	  return register(_.flatten([Angular2.change_detection, Angular2.differs]), exportFn);
+	  return register(_.flatten(Angular2.change_detection), exportFn);
 	});
 
 	System.register('angular2/facade', [], function(exportFn) {
 	  return register(Angular2.facade, exportFn);
+	});
+
+	System.register('angular2/dom', [], function(exportFn) {
+	  return register(Angular2.dom, exportFn);
 	});
 
 
@@ -53701,6 +53712,28 @@
 /***/ function(module, exports) {
 
 	'use strict';//# sourceMappingURL=route_definition.js.map
+
+/***/ },
+/* 411 */
+/***/ function(module, exports) {
+
+	'use strict';/**
+	 * JS version of browser APIs. This library can only run in the browser.
+	 */
+	var win = window;
+	exports.window = win;
+	exports.document = window.document;
+	exports.location = window.location;
+	exports.gc = window['gc'] ? function () { return window['gc'](); } : function () { return null; };
+	exports.performance = window['performance'] ? window['performance'] : null;
+	exports.Event = exports.Event;
+	exports.MouseEvent = exports.MouseEvent;
+	exports.KeyboardEvent = exports.KeyboardEvent;
+	exports.EventTarget = exports.EventTarget;
+	exports.History = exports.History;
+	exports.Location = exports.Location;
+	exports.EventListener = exports.EventListener;
+	//# sourceMappingURL=browser.js.map
 
 /***/ }
 /******/ ]);
