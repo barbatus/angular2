@@ -4,7 +4,7 @@
 
 Source code is taken from the official [Angular2 NPM](https://www.npmjs.com/package/angular2).
 
-Current version of Angular2 in the package - **alpha-46**.
+Current version of Angular2 in the package - **alpha-52**.
 
 Also, this package provides Babel and TypeScript languages support for development with Angular2.
 
