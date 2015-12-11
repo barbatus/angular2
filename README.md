@@ -13,7 +13,9 @@ After package installation, you can start importing Angular2 core's components i
 
 For example, create `app.ts` file and add the next lines:
 ````ts
-import {Component, bootstrap} from 'angular2/angular2';
+import {Component} from 'angular2/core';
+
+import {bootstrap}  from 'angular2/bootstrap';
 
 @Component({
   name: 'demo'
