@@ -34,6 +34,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-tsd');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('default', ['npm-install:angular2',
+  grunt.registerTask('default', ['npm-install',
     'webpack:angular2_bundle', 'tsd:refresh', 'copy:angular2_typings']);
 };

@@ -1,10 +1,12 @@
 {
   "license": "MIT",
   "dependencies": {
+    "es6-promise": "^3.0.2",
+    "rxjs": "5.0.0-alpha.14",
+    "es6-shim": "^0.33.3",
     "reflect-metadata": "0.1.2",
     "zone.js": "0.5.8",
-    "es6-shim": "0.33.13",
-    "angular2": "2.0.0-alpha.46"
+    "angular2": "2.0.0-alpha.52"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -13,6 +15,8 @@
     "grunt-shell": "^1.1.2",
     "grunt-tsd": "^0.2.0-beta.1",
     "grunt-webpack": "^1.0.11",
+    "gulp": "^3.9.0",
+    "tsproject": "^1.1.0-rc.2",
     "webpack": "~1.11.0",
     "webpack-dev-server": "^1.12.1"
   }

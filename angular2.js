@@ -4,7 +4,12 @@ require('zone.js');
 
 var Angular2 = {
   core: require('angular2/core'),
+  common: require('angular2/common'),
+  bootstrap: require('angular2/bootstrap'),
   router: require('angular2/router'),
+  browser: [
+    require('angular2/platform/browser')
+  ],
   // Requires below are for the dev purposes mostly.
   change_detection: [
     require('angular2/src/core/change_detection/change_detection'),
@@ -18,11 +23,9 @@ var Angular2 = {
     require('angular2/src/facade/collection')
   ],
   dom: [
-    require('angular2/src/core/dom/dom_adapter'),
-    require('angular2/src/core/dom/browser_adapter')
+    require('angular2/src/platform/dom/dom_adapter')
   ],
-  decorators: require('angular2/src/core/util/decorators'),
-  router_dev: require('angular2/src/router/lifecycle_annotations_impl')
+  decorators: require('angular2/src/core/util/decorators')
 };
 
 // Registers System.js module.
@@ -41,17 +44,27 @@ function register(module, exportFn) {
   };
 }
 
-System.register('angular2/angular2', [], function(exportFn) {
+System.register('angular2/core', [], function(exportFn) {
   return register(Angular2.core, exportFn);
+});
+
+System.register('angular2/common', [], function(exportFn) {
+  return register(Angular2.common, exportFn);
+});
+
+System.register('angular2/bootstrap', [], function(exportFn) {
+  return register(Angular2.bootstrap, exportFn);
+});
+
+System.register('angular2/platform/browser', [], function(exportFn) {
+  return register(Angular2.browser, exportFn);
 });
 
 System.register('angular2/router', [], function(exportFn) {
   return register(Angular2.router, exportFn);
 });
 
-System.register('angular2/router_dev', [], function(exportFn) {
-  return register(Angular2.router_dev, exportFn);
-});
+
 
 System.register('angular2/decorators', [], function(exportFn) {
   return register([Angular2.decorators], exportFn);
@@ -65,6 +78,6 @@ System.register('angular2/facade', [], function(exportFn) {
   return register(Angular2.facade, exportFn);
 });
 
-System.register('angular2/dom', [], function(exportFn) {
+System.register('angular2/platform/dom', [], function(exportFn) {
   return register(Angular2.dom, exportFn);
 });

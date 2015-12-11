@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.6.7_4',
+  version: '0.7.0',
   summary: 'Angular2 Npm package for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
@@ -46,8 +46,13 @@ Package.onUse(function(api) {
   ]);
 
   api.addFiles([
-    'typings/angular2/angular2.d.ts',
+    'typings/angular2/core.d.ts',
+    'typings/angular2/common.d.ts',
+    'typings/angular2/bootstrap.d.ts',
+    'typings/angular2/platform/browser.d.ts',
     'typings/angular2/router.d.ts',
+    'typings/es6-promise/es6-promise.d.ts',
+    'typings/es6-shim/es6-shim.d.ts',
     'typings/meteor/meteor.d.ts',
     'typings/angular2.d.ts'
   ], server);
