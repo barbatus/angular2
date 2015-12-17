@@ -1,6 +1,8 @@
 require('es6-shim');
 require('reflect-metadata');
-require('zone.js');
+// Requiring original zone.js file is
+// more reliable than package itself
+require('zone.js/dist/zone.js');
 
 var Angular2 = {
   core: require('angular2/core'),
