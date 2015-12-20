@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.7.1_1',
+  version: '0.7.2',
   summary: 'Angular2 Npm package for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
@@ -31,9 +31,9 @@ Package.onUse(function(api) {
 
   api.use([
     'underscore@1.0.4',
-    //'meteorhacks:zones@1.6.0',
     'systemjs:systemjs@0.18.4',
-    'promise@0.4.8'
+    'promise@0.4.8',
+    'barbatus:rxjs@0.1.0'
   ]);
 
   api.imply([

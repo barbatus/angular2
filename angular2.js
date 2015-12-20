@@ -1,8 +1,11 @@
 require('es6-shim');
 require('reflect-metadata');
 // Requiring original zone.js file is
-// more reliable than package itself
+// more reliable than package itself.
+// TODO: investigate why meteorhacks:zones@1.6.0
+// doesn't work.
 require('zone.js/dist/zone.js');
+require('rxjs');
 
 var Angular2 = {
   core: require('angular2/core'),
