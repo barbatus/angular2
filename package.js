@@ -32,8 +32,7 @@ Package.onUse(function(api) {
   api.use([
     'underscore@1.0.4',
     'systemjs:systemjs@0.18.4',
-    'promise@0.4.8',
-    'barbatus:rxjs@0.1.0'
+    'promise@0.4.8'
   ]);
 
   api.imply([
