@@ -30,7 +30,10 @@ var Angular2 = {
   dom: [
     require('angular2/src/platform/dom/dom_adapter')
   ],
-  decorators: require('angular2/src/core/util/decorators')
+  decorators: require('angular2/src/core/util/decorators'),
+  router_dev: [
+    require('angular2/src/router/lifecycle_annotations_impl')
+  ]
 };
 
 // Registers System.js module.
@@ -85,4 +88,8 @@ System.register('angular2/facade', [], function(exportFn) {
 
 System.register('angular2/platform/dom', [], function(exportFn) {
   return register(Angular2.dom, exportFn);
+});
+
+System.register('angular2/router_dev', [], function(exportFn) {
+  return register(Angular2.router_dev, exportFn);
 });
