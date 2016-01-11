@@ -93,3 +93,20 @@ System.register('angular2/platform/dom', [], function(exportFn) {
 System.register('angular2/router_dev', [], function(exportFn) {
   return register(Angular2.router_dev, exportFn);
 });
+
+
+// RxJs modules.
+
+var RxJs = {
+  Observable: require('rxjs/Observable'),
+  Observer: require('rxjs/Observer')
+};
+
+System.register('rxjs/Observer', [], function(exportFn) {
+  return register(RxJs.Observer, exportFn);
+});
+
+System.register('rxjs/Observable', [], function(exportFn) {
+  return register(RxJs.Observable, exportFn);
+});
+
