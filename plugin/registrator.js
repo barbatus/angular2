@@ -2,6 +2,7 @@
 
 Plugin.registerCompiler({
   extensions: ['ts'],
+  filenames: ['tsconfig.json']
 }, () => new TsCompiler());
 
 Plugin.registerCompiler({
