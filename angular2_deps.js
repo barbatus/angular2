@@ -1,2 +1,12 @@
-require('es6-shim');
-require('reflect-metadata');
+// ES6 shims
+require("core-js/es6/object");
+require("core-js/es6/array");
+require("core-js/es6/string");
+require("core-js/es6/function");
+require("core-js/es6/number");
+require("core-js/es6/regexp");
+require("core-js/es6/map");
+require("core-js/es6/set");
+require("core-js/es6/symbol");
+
+require("reflect-metadata");
