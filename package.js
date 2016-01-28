@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.8.2',
+  version: '0.8.3',
   summary: 'Angular2 Npm packaged for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
@@ -14,7 +14,7 @@ Package.registerBuildPlugin({
   use: [
     'ecmascript@0.1.4',
     'barbatus:ng2-compilers@0.1.0',
-    'barbatus:ts-compilers@0.2.6'
+    'barbatus:ts-compilers@0.2.7'
   ]
 });
 
@@ -57,10 +57,7 @@ Package.onUse(function(api) {
     'typings/angular2/bootstrap.d.ts',
     'typings/angular2/platform/browser.d.ts',
     'typings/angular2/router.d.ts',
-    'typings/es6-promise/es6-promise.d.ts',
-    'typings/es6-shim/es6-shim.d.ts',
-    'typings/meteor/meteor.d.ts',
-    'typings/angular2.d.ts'
+    'typings/angular2/angular2.d.ts'
   ], 'server');
 });
 
