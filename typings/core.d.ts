@@ -9,22 +9,14 @@
 // modifying this file.
 // ***********************************************************
 
-// angular2/core depends transitively on these libraries.
-// If you don't have them installed you can install them using TSD
-// https://github.com/DefinitelyTyped/tsd
-
-///<reference path="../es6-promise/es6-promise.d.ts"/>
-///<reference path="../es6-shim/es6-shim.d.ts"/>
-
-
-
+import {Observable, Subject} from 'rx';
 
 /**
- * @module
+ * @namespace
  * @description
- * Starting point to import all public core APIs.
+ * Namespace of public core APIs.
  */
-declare module core {  
+declare namespace core {
   /**
    * Disable Angular's development mode, which turns off assertions and other
    * checks within the framework.
@@ -7684,13 +7676,6 @@ declare module core {
    * about symbols.
    */
   var reflector: any;
-  
-
-  
 }
 
-declare module "angular2/core" {
-  export = core;
-}
-
-
+export = core;

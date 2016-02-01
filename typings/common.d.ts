@@ -9,17 +9,13 @@
 // modifying this file.
 // ***********************************************************
 
-// angular2/common depends transitively on these libraries.
-// If you don't have them installed you can install them using TSD
-// https://github.com/DefinitelyTyped/tsd
+import * as core from './core';
 
-///<reference path="./core.d.ts"/>
+import {Observable, Subject} from 'rx';
 
-
-
-declare module common {  
+declare namespace common {
   /**
-   * The `async` pipe subscribes to an core.Observable or Promise and returns the latest value it has
+   * The `async` pipe subscribes to an Observable or Promise and returns the latest value it has
    * emitted.
    * When a new value is emitted, the `async` pipe marks the component to be checked for changes.
    * 
@@ -30,8 +26,8 @@ declare module common {
    * 
    * {@example core/pipes/ts/async_pipe/async_pipe_example.ts region='AsyncPipe'}
    * 
-   * It's also possible to use `async` with Observables. The example below binds the `time` core.Observable
-   * to the view. Every 500ms, the `time` core.Observable updates the view with the current time.
+   * It's also possible to use `async` with Observables. The example below binds the `time` Observable
+   * to the view. Every 500ms, the `time` Observable updates the view with the current time.
    * 
    * ```typescript
    * ```
@@ -42,7 +38,7 @@ declare module common {
     
     ngOnDestroy(): void;
     
-    transform(obj: core.Observable<any>| Promise<any>| core.EventEmitter<any>, args?: any[]): any;
+    transform(obj: Observable<any>| Promise<any>| core.EventEmitter<any>, args?: any[]): any;
     
   }
 
@@ -726,9 +722,9 @@ declare module common {
     
     untouched: boolean;
     
-    valueChanges: core.Observable<any>;
+    valueChanges: Observable<any>;
     
-    statusChanges: core.Observable<any>;
+    statusChanges: Observable<any>;
     
     pending: boolean;
     
@@ -1964,13 +1960,6 @@ declare module common {
    * ```
    */
   let COMMON_DIRECTIVES: core.Type[][];
-  
-
-  
 }
 
-declare module "angular2/common" {
-  export = common;
-}
-
-
+export = common;

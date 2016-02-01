@@ -9,15 +9,9 @@
 // modifying this file.
 // ***********************************************************
 
-// angular2/platform/browser depends transitively on these libraries.
-// If you don't have them installed you can install them using TSD
-// https://github.com/DefinitelyTyped/tsd
+import * as core from '../core';
 
-///<reference path="../core.d.ts"/>
-
-
-
-declare module browser {  
+declare namespace browser {
   /**
    * Marks a function or method as an Angular 2 entrypoint. Only necessary in Dart code.
    * 
@@ -468,13 +462,6 @@ declare module browser {
    * Returns a `Promise` of {@link core.ComponentRef}.
    */
   function bootstrap(appComponentType: core.Type, customProviders?: Array<any /*core.Type | Provider | any[]*/>): Promise<core.ComponentRef>;
-  
-
-  
 }
 
-declare module "angular2/platform/browser" {
-  export = browser;
-}
-
-
+export = browser;

@@ -9,21 +9,12 @@ module.exports = function(grunt) {
           filename: './dist/angular2_deps.js'
         }
       }
-    },
-    tsd: {
-      refresh: {
-        options: {
-          command: 'reinstall',
-          config: 'tsd.json'
-        }
-      }
     }
   });
 
   grunt.loadNpmTasks('grunt-npm-install');
   grunt.loadNpmTasks('grunt-webpack');
-  grunt.loadNpmTasks('grunt-tsd');
 
   grunt.registerTask('default', ['npm-install',
-    'webpack:angular2_bundle', 'tsd:refresh']);
+    'webpack:angular2_bundle']);
 };

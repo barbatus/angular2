@@ -9,21 +9,14 @@
 // modifying this file.
 // ***********************************************************
 
-// angular2/router depends transitively on these libraries.
-// If you don't have them installed you can install them using TSD
-// https://github.com/DefinitelyTyped/tsd
-
-///<reference path="./core.d.ts"/>
-
-
-
+import * as core from './core';
 
 /**
- * @module
+ * @namespace
  * @description
  * Maps application URLs into application states, to support deep-linking and navigation.
  */
-declare module ngRouter {  
+declare namespace ngRouter {  
   /**
    * The `Router` is responsible for mapping URLs to components.
    * 
@@ -1332,13 +1325,7 @@ declare module ngRouter {
     
     component?: core.Type;
     
-  }
-
-  
+  }  
 }
 
-declare module "angular2/router" {
-  export = ngRouter;
-}
-
-
+export = ngRouter;

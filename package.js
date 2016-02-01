@@ -49,16 +49,6 @@ Package.onUse(function(api) {
   api.addFiles([
     'system_config.js'
   ]);
-
-  // Installs Angular2 and dependencies typings.
-  api.addFiles([
-    'typings/angular2/core.d.ts',
-    'typings/angular2/common.d.ts',
-    'typings/angular2/bootstrap.d.ts',
-    'typings/angular2/platform/browser.d.ts',
-    'typings/angular2/router.d.ts',
-    'typings/angular2/angular2.d.ts'
-  ], 'server');
 });
 
 Package.onTest(function(api) {
