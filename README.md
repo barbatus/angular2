@@ -1,6 +1,6 @@
 ## Angular2 packaged for Meteor
 
-Angular 2's modules are registered and distributed as System.js modules.
+Angular 2's modules are registered and loaded via the SystemJS loader.
 
 Source code is taken from the official [Angular2 NPM](https://www.npmjs.com/package/angular2).
 
