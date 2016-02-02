@@ -11,8 +11,6 @@
 
 import * as core from './core';
 
-import {Observable, Subject} from 'rx';
-
 declare namespace common {
   /**
    * The `async` pipe subscribes to an Observable or Promise and returns the latest value it has

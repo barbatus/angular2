@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.8.3',
+  version: '0.8.4',
   summary: 'Angular2 Npm packaged for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
@@ -49,6 +49,19 @@ Package.onUse(function(api) {
   api.addFiles([
     'system_config.js'
   ]);
+
+  // Installs Angular2 and dependencies typings.
+  api.addFiles([
+    'typings/core.d.ts',
+    'typings/core_amb.d.ts',
+    'typings/common.d.ts',
+    'typings/common_amb.d.ts',
+    'typings/platform/browser.d.ts',
+    'typings/platform/browser_amb.d.ts',
+    'typings/router.d.ts',
+    'typings/router_amb.d.ts',
+    'typings/angular2.d.ts'
+  ], 'server');
 });
 
 Package.onTest(function(api) {

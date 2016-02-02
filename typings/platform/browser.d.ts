@@ -9,7 +9,7 @@
 // modifying this file.
 // ***********************************************************
 
-import * as core from '../core';
+import * as core from './core';
 
 declare namespace browser {
   /**
