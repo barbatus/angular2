@@ -37,13 +37,13 @@ The package installs Angular2 definition files since they are distributed via th
 
 There are two ways to add typings to the app:
 
-    - using special sugared syntax to reference definitions in any ts-file:
+  - using special sugared syntax to reference definitions at the top of any ts-file:
 
 ````ts
 /// <reference path="typings/angular2/angular2.d.ts" />
 ````
 
-    - or adding typings to the tsconfig.json globally for all files
+  - or adding typings to the `tsconfig.json` globally for all files:
 
 ````
 {
