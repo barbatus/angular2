@@ -44,9 +44,7 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	//require('es6-shim');
-	//window.Promise = null;
-
+	// ES6 shims
 	__webpack_require__(1);
 	__webpack_require__(51);
 	__webpack_require__(79);

@@ -14,7 +14,7 @@ Package.registerBuildPlugin({
   use: [
     'ecmascript@0.1.4',
     'barbatus:ng2-compilers@0.1.0',
-    'barbatus:ts-compilers@0.2.7'
+    'barbatus:ts-compilers@0.2.8_4'
   ]
 });
 
