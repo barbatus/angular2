@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.8.4',
+  version: '0.8.5',
   summary: 'Angular2 Npm packaged for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
@@ -39,7 +39,7 @@ Package.onUse(function(api) {
 
   api.addFiles([
     'dist/angular2_deps.js',
-    'node_modules/zone.js/dist/zone.js',
+    'node_modules/angular2/bundles/angular2-polyfills.js',
     'node_modules/angular2/bundles/angular2.js',
     'node_modules/angular2/bundles/http.js',
     'node_modules/angular2/bundles/router.js',
