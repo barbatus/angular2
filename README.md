@@ -4,7 +4,7 @@ Angular 2's modules are registered and loaded via the SystemJS loader.
 
 Source code is taken from the official [Angular2 NPM](https://www.npmjs.com/package/angular2).
 
-Current version of Angular2 in the package - **beta-1**.
+Current version of Angular2 in the package - **beta-3**.
 
 Also, this package adds Babel and TypeScript languages compilers to develop with Angular2.
 
