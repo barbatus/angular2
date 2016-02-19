@@ -5,22 +5,17 @@
     "rxjs": "5.0.0-beta.0",
     "es6-shim": "^0.33.3",
     "reflect-metadata": "0.1.2",
-    "zone.js": "0.5.11",
-    "angular2": "2.0.0-beta.3",
+    "zone.js": "0.5.14",
+    "angular2": "2.0.0-beta.6",
     "core-js": "2.0.3"
   },
   "devDependencies": {
     "dgeni": "^0.4.1",
     "dgeni-packages": "^0.10.11",
     "grunt": "^0.4.5",
-    "grunt-contrib-copy": "^0.8.2",
     "grunt-npm-install": "^0.2.0",
     "grunt-shell": "^1.1.2",
-    "grunt-tsd": "^0.2.0-beta.1",
     "grunt-webpack": "^1.0.11",
-    "gulp": "^3.9.0",
-    "tsproject": "^1.1.0-rc.2",
-    "webpack": "~1.11.0",
-    "webpack-dev-server": "^1.12.1"
+    "webpack": "~1.11.0"
   }
 }

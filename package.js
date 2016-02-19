@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.8.5',
+  version: '0.8.6',
   summary: 'Angular2 Npm packaged for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
@@ -26,12 +26,16 @@ Package.onUse(function(api) {
   ], 'server');
 
   api.use([
-    'underscore@1.0.4',
-    'systemjs:systemjs@0.18.4',
-    'promise@0.4.8'
+    'underscore',
+    // This is important, i.e., adding it here
+    // (before Angular2 itself) makes Angular2
+    // to patch Meteor promise properly.
+    'promise@0.4.8',
+    'systemjs:systemjs@0.18.4'
   ]);
 
   api.imply([
+    // Add ES6 polyfills.
     'babel-runtime',
     'systemjs:systemjs',
     'promise'
