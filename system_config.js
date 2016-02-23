@@ -2,7 +2,7 @@
 
 var oldRegister = System.register;
 var mainRegex = /^server\/main$/;
-var appRegex = /^client\/app$/;
+var appRegex = /(^client\/app$)|(^app$)/g;
 System.register = function(name, deps, declare) {
   oldRegister.call(this, name, deps, declare);
 
