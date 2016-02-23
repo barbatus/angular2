@@ -1,6 +1,6 @@
 Package.describe({
   name: 'barbatus:angular2',
-  version: '0.8.6',
+  version: '0.8.7',
   summary: 'Angular2 Npm packaged for Meteor',
   git: 'https://github.com/barbatus/angular2',
   documentation: 'README.md'
@@ -14,7 +14,7 @@ Package.registerBuildPlugin({
   use: [
     'ecmascript@0.1.4',
     'barbatus:ng2-compilers@0.1.0',
-    'barbatus:ts-compilers@0.2.8_4'
+    'barbatus:ts-compilers@0.2.9'
   ]
 });
 
