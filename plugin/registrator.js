@@ -3,7 +3,10 @@
 Plugin.registerCompiler({
   extensions: ['ts'],
   filenames: ['tsconfig.json']
-}, () => new TsCompiler());
+}, () => new TypeScriptCompiler({
+      // We define own helpers.
+      noEmitHelpers: true
+    }));
 
 Plugin.registerCompiler({
   extensions: ['jsx'],

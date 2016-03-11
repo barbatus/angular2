@@ -6,7 +6,7 @@
     "es6-shim": "^0.33.3",
     "reflect-metadata": "0.1.2",
     "zone.js": "0.5.15",
-    "angular2": "2.0.0-beta.7",
+    "angular2": "2.0.0-beta.9",
     "core-js": "2.0.3"
   },
   "devDependencies": {
