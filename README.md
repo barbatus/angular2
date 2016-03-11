@@ -31,6 +31,7 @@ Besides core components, `angular2/router` is also available for importing.
 
 ### TypeScript
 The package uses https://github.com/barbatus/typescript-compiler/tree/angular2-compiler TypeScript compiler package.
+
 At first, you will likely see in the console that names like "Meteor" or "Mongo" are underfined.
 To get rid of that issue, you will need to install Angular2 and Meteor definition files in your app.
 
