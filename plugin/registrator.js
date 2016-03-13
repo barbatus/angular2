@@ -9,5 +9,6 @@ Plugin.registerCompiler({
     }));
 
 Plugin.registerCompiler({
-  extensions: ['jsx'],
-}, () => new JsxCompiler());
+  extensions: ['html'],
+  archMatching: 'web'
+}, () => new HtmlCompiler());
