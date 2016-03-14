@@ -7,8 +7,3 @@ Plugin.registerCompiler({
       // We define own helpers.
       noEmitHelpers: true
     }));
-
-Plugin.registerCompiler({
-  extensions: ['html'],
-  archMatching: 'web'
-}, () => new HtmlCompiler());
